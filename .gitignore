@@ -111,3 +111,6 @@ dmypy.json
 # pycharm
 *.idea/
 *.idea
+# bot-nh
+/home/surister/noheavenbot/utils/login.py
+utils/login.py
