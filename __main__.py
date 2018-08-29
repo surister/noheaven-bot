@@ -1,7 +1,10 @@
-from logger.bot_log import Log, Disconnecting
-
 from discord import Game
 from discord.ext.commands import Bot, when_mentioned_or
+
+
+from logger.bot_log import Log, Disconnecting
+from utils.login import Tokens
+from utils.cogs_manager import load_cogs
 
 
 class bot(Bot):
@@ -23,10 +26,10 @@ class bot(Bot):
 
 sur = bot('!', '!help -- para ayuda')
 
-sur.run()
 
 if __name__ == '__main__':
-    sur.run()
+    load_cogs(sur)
+    sur.run(Tokens.nhbot)
 
     if sur.is_closed():
         try:
