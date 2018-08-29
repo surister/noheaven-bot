@@ -9,7 +9,7 @@ bot_log_folder = f'{os.path.dirname(__file__)}/logs'
 asd = f'{os.path.dirname(__file__)} asdf.txt'
 
 
-def custom_msg(*args):
+def prettier_msg(*args):
     return f' {strftime("%y %m %d")} -> {args}'
 
 
