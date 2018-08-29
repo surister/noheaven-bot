@@ -15,6 +15,7 @@ class bot(Bot):
     @property
     def bot_log(self):
         return Log()
+
     @property
     def bot_disconnect(self):
         return Disconnecting
@@ -24,10 +25,13 @@ sur = bot('!', '!help -- para ayuda')
 
 sur.run()
 
-if sur.is_closed():
-    try:
-        sur.bot_disconnect.disconnect(sur)
-    except Exception as e:
-        print(e)
-    finally:
-        exit()
+if __name__ == '__main__':
+    sur.run()
+
+    if sur.is_closed():
+        try:
+            sur.bot_disconnect.disconnect(sur)
+        except Exception as e:
+            print(e)
+        finally:
+            exit()
