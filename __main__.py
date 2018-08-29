@@ -7,7 +7,7 @@ from utils.login import Tokens
 from utils.cogs_manager import load_cogs
 
 
-class bot(Bot):
+class bot(Bot):  # fuck camelcase
     def __init__(self, prefix, status_name):
 
         super().__init__(
@@ -21,6 +21,7 @@ class bot(Bot):
 
     @property
     def bot_disconnect(self):
+        self.http.close()
         return Disconnecting
 
 
@@ -33,7 +34,7 @@ if __name__ == '__main__':
 
     if sur.is_closed():
         try:
-            sur.bot_disconnect.disconnect(sur)
+            sur.bot_disconnect.disconnect()
         except Exception as e:
             print(e)
         finally:

@@ -28,9 +28,8 @@ class Log:
 class Disconnecting:
 
     @classmethod
-    def disconnect(cls, instance):
+    def disconnect(cls):
         Log.warning('Disconecting')
-        instance.http_sesion.close()
 
         copy(bot_log_path, bot_log_folder)
 
