@@ -6,12 +6,22 @@ from cogs.path import cogs_path
 
 class StartupExtension:
 
-    blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py']
+    blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py', '__pycache__.py']
 
     @classmethod
     def to_array(cls):
-        return [f'cogs.{cog}'.replace('.py', '') for cog in os.listdir(cogs_path) if cog not in
-                                                                                        StartupExtension().blacklist]
+        cog_list = []
+        for element in os.listdir(cogs_path):
+            if element not in StartupExtension.blacklist:
+                if os.path.isdir(f'{cogs_path}/{element}'):
+                    for cog in os.listdir(f'{cogs_path}/{element}'):
+                        if cog not in StartupExtension.blacklist:
+                            cog_list.append(f'cogs.{element}.{cog}'.replace('.py', ''))
+                else:
+                    if element not in StartupExtension.blacklist:
+                        cog_list.append(f'cogs.{element}'.replace('py', ''))
+
+        return cog_list
 
 
 def load_cogs(instance):

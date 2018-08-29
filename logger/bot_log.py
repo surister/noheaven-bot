@@ -18,11 +18,11 @@ class Log:
 
     @classmethod
     def write(cls, *msg):
-        return logging.info(custom_msg(msg))
+        return logging.info(prettier_msg(msg))
 
     @classmethod
     def warning(cls, *msg):
-        logging.warning(custom_msg(msg))
+        logging.warning(prettier_msg(msg))
 
 
 class Disconnecting:
@@ -35,4 +35,3 @@ class Disconnecting:
         copy(bot_log_path, bot_log_folder)
 
         os.remove(bot_log_path)
-
