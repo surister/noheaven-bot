@@ -26,7 +26,7 @@ class bot(Bot):  # fuck camelcase
 
 
 sur = bot('!', '!help -- para ayuda')
-
+sur.remove_command('help')
 
 if __name__ == '__main__':
     load_cogs(sur)
