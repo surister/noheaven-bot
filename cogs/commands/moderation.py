@@ -1,6 +1,10 @@
 from discord.ext import commands
 from discord import Embed, Member
 
+from utils.constructors import EmbedConstructor
+from utils.validator import has_role
+
+
 # TOdo logs aqui en todo
 
 
@@ -17,7 +21,20 @@ class Moderation:
 
     @commands.command(pass_context=True, name='help')
     async def command_for_help(self, ctx):
-        pass
+
+        if has_role('Server Admin', ctx.author.roles):
+            help_embed = EmbedConstructor(
+                'Admins + Users commands: ',
+                ['__**Admins**__', 'Empty'],
+                ['!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'],
+                ['!d <number>', 'Deletes <number> messages from the channel'],
+                ['__**Users**__', 'Empty'],
+                ['!info <user>', 'Shows <users> info'],
+                ['!ping', 'echo PONG']).construct()
+        else:
+            help_embed = EmbedConstructor('Users commands',
+                                          ['!info <user>', 'Shows <users> info'], ['!ping', 'echo PONG']).construct()
+        await ctx.send(embed=help_embed)
 
     @commands.check(is_mod)
     @commands.command(pass_context=True)
@@ -97,8 +114,7 @@ class Moderation:
 
     @commands.command(pass_context=True)
     async def ping(self, ctx):
-        a = type(ctx.me)
-        await ctx.send(a)
+        await ctx.send('Pong')
 
 
 def setup(bot):

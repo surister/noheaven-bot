@@ -6,7 +6,8 @@ from cogs.path import cogs_path
 
 class StartupExtension:
 
-    blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py', '__pycache__.py']
+    blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py', '__pycache__.py',
+                 'error_handler.py']
 
     @classmethod
     def to_array(cls):
