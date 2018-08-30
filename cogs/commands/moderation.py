@@ -1,6 +1,8 @@
 from discord.ext import commands
 from discord import Embed, Member
 
+# TOdo logs aqui en todo
+
 
 def is_mod(ctx):
     if 243742080223019019 == ctx.author.id or 437370225697226753 == ctx.author.id:
@@ -12,6 +14,10 @@ class Moderation:
 
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.command(pass_context=True, name='help')
+    async def command_for_help(self, ctx):
+        pass
 
     @commands.check(is_mod)
     @commands.command(pass_context=True)

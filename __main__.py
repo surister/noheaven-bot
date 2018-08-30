@@ -7,7 +7,7 @@ from utils.login import Tokens
 from utils.cogs_manager import load_cogs
 
 
-class bot(Bot):  # fuck camelcase
+class bot(Bot):
     def __init__(self, prefix, status_name):
 
         super().__init__(

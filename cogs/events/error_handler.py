@@ -1,3 +1,5 @@
+from discord import Embed
+
 
 class ErrorHandler:
 
@@ -6,7 +8,8 @@ class ErrorHandler:
 
     @staticmethod
     async def on_command_error(ctx, exception):
-        await ctx.send(f'{ctx} -> {exception}')
+        embed = Embed(title=f' Error -> {exception}')
+        await ctx.send(embed=embed)
 
     @staticmethod
     async def on_error(event, *args, **kwargs):
