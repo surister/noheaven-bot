@@ -9,9 +9,12 @@ from utils.validator import has_role
 
 
 def is_mod(ctx):
-    if 243742080223019019 == ctx.author.id or 437370225697226753 == ctx.author.id:
-        return True
-    return False
+    return has_role('Server Admin', ctx.author.roles)
+
+
+def is_surister(ctx):
+    return ctx.author.id == 243742080223019019
+
 
 
 class Moderation:
@@ -28,6 +31,7 @@ class Moderation:
                 ['__**Admins**__', 'Empty'],
                 ['!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'],
                 ['!d <number>', 'Deletes <number> messages from the channel'],
+                ['!reload', 'Reloads cogs'],
                 ['__**Users**__', 'Empty'],
                 ['!info <user>', 'Shows <users> info'],
                 ['!ping', 'echo PONG']).construct()
@@ -109,7 +113,7 @@ class Moderation:
     async def delete_messages(self, ctx, number: int):
 
             print(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
-            mgs = [message async for message in ctx.channel.history(limit=number)]
+            mgs = [message async for message in ctx.channel.history(limit=number+1)]
             await ctx.channel.delete_messages(mgs)
 
     @commands.command(pass_context=True)
