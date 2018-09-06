@@ -114,3 +114,8 @@ dmypy.json
 # bot-nh
 /home/surister/noheavenbot/utils/login.py
 utils/login.py
+*.lock
+Pipfile
+Pipfile.lock
+/Pipfile
+Pipfile/
