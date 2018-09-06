@@ -30,7 +30,7 @@ sur.remove_command('help')
 
 if __name__ == '__main__':
     load_cogs(sur)
-    sur.run(Tokens.nhbot)
+    sur.run(Tokens.sur)
 
     if sur.is_closed():
         try:

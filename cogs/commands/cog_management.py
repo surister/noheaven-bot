@@ -7,7 +7,7 @@ class CogManagement:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(pass_context=True)
     async def reload(self, ctx):
 
         unload_cogs(self.bot)

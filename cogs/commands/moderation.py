@@ -16,11 +16,22 @@ def is_surister(ctx):
     return ctx.author.id == 243742080223019019
 
 
-
 class Moderation:
 
     def __init__(self, bot):
         self.bot = bot
+
+    @commands.check(is_surister)
+    @commands.command(name='exit')
+    async def bot_exit(self, ctx):
+
+        await ctx.send('Apagando..')
+        try:
+            self.bot.bot_disconnect.disconnect()
+        except:
+            pass
+        finally:
+            exit(0)
 
     @commands.command(pass_context=True, name='help')
     async def command_for_help(self, ctx):
