@@ -119,3 +119,4 @@ Pipfile
 Pipfile.lock
 /Pipfile
 Pipfile/
+/logger
