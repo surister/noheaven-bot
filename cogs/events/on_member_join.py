@@ -7,7 +7,7 @@ class Onmember_actions:
 
     async def on_member_join(self, member):
         recepcion = self.bot.get_channel(452530575618867200)
-        await recepcion.send(f'Bienvenido {member.name} a {member.guild.name}')
+        await recepcion.send(f'Bienvenido {member.mention} a {member.guild.name}')
 
 
 def setup(bot):
