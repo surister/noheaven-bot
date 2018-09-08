@@ -23,8 +23,8 @@ class Fun:
     @commands.group(invoke_without_command=True)
     async def porn(self, ctx, arg):
 
-            if arg not in nsfw_categories:
-                return ctx.send('Wrong category')
+            if arg.lower() not in nsfw_categories:
+                return await ctx.send('Wrong category')
 
             async with ctx.channel.typing():
                 link = f'http://www.sex.com/pics/{arg.lower()}/'
@@ -46,8 +46,8 @@ class Fun:
     @commands.group(invoke_without_command=True)
     async def gif(self, ctx, arg):
 
-            if arg not in nsfw_categories:
-                return ctx.send('Wrong category')
+            if arg.lower() not in nsfw_categories:
+                return await ctx.send('Wrong category')
 
             async with ctx.channel.typing():
                 link = f'http://www.sex.com/gifs/{arg.lower()}/'

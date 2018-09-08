@@ -15,9 +15,9 @@ help_fields = (
                 ['!gif list', 'Shows posible <argument>']
                 )
 
-nsfw_categories = ['Amateur', 'Anal', 'Asian', 'Ass', 'Babes', 'BBW', 'BDSM', 'Big', 'Tits', 'Blonde', 'Blowjob',
-           'Brunette', 'Celebrity', 'College', 'Creampie', 'Cumshots', 'Double', 'Penetration', 'Ebony',
-           'Emo', 'female-ejaculation', 'Fisting', 'footjob', 'Gangbang', 'Gay', 'Girlfriend', 'Group',
-           'Sex', 'Hairy', 'Handjob', 'Hardcore', 'Hentai', 'Indian', 'Interracial', 'Latina', 'Lesbian',
-           'Lingerie', 'Masturbation', 'Mature', 'MILF', 'Non-Nude', 'Panties', 'penis', 'Pornstar', 'Public',
-           'Sex', 'Pussy', 'Redhead', 'Self', 'Shot', 'Shemale', 'Teen', '(18+)', 'Threesome', 'Toys']
+nsfw_categories = ['amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',
+                   'brunette', 'celebrity', 'college', 'creampie', 'cumshots', 'double', 'penetration', 'ebony',
+                   'emo', 'female-ejaculation', 'fisting', 'footjob', 'gangbang', 'gay', 'girlfriend', 'group',
+                   'sex', 'hairy', 'handjob', 'hardcore', 'hentai', 'indian', 'interracial', 'latina', 'lesbian',
+                   'lingerie', 'masturbation', 'mature', 'milf', 'non-nude', 'panties', 'penis', 'pornstar', 'public',
+                   'sex', 'pussy', 'redhead', 'self', 'shot', 'shemale', 'teen', '(18+)', 'threesome', 'toys']

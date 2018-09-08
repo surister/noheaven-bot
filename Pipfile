@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 "discord.py" = {file = "https://github.com/Rapptz/discord.py/archive/master.zip", extras = ["voice"]}
 "72eb2aa" = {file = "https://github.com/Rapptz/discord.py/archive/rewrite.zip"}
+"beautifulsoup4" = "*"
 
 [dev-packages]
 
