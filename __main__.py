@@ -12,8 +12,7 @@ class bot(Bot):
 
         super().__init__(
             command_prefix=when_mentioned_or(prefix),
-            activity=Game(name=status_name),
-        )
+            activity=Game(name=status_name))
 
     @property
     def bot_log(self):
@@ -25,12 +24,12 @@ class bot(Bot):
         return Disconnecting
 
 
-sur = bot('!', '!help -- para ayuda')
+sur = bot('$', '!help -- para ayuda')
 sur.remove_command('help')
 
 if __name__ == '__main__':
     load_cogs(sur)
-    sur.run(Tokens.nhbot)
+    sur.run(Tokens.sur)
 
     if sur.is_closed():
         try:

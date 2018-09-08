@@ -1,15 +1,12 @@
 from discord.ext import commands
 from discord import Embed, Member
+from discord.utils import get, find
 
 from utils.constructors import EmbedConstructor
 from utils.validator import has_role
-
+from utils.constants import help_fields
 
 # TOdo logs aqui en todo
-
-
-def is_mod(ctx):
-    return has_role('Server Admin', ctx.author.roles)
 
 
 def is_surister(ctx):
@@ -28,8 +25,8 @@ class Moderation:
         await ctx.send('Apagando..')
         try:
             self.bot.bot_disconnect.disconnect()
-        except:
-            pass
+        except Exception as e:
+            print(e)
         finally:
             exit(0)
 
@@ -37,21 +34,12 @@ class Moderation:
     async def command_for_help(self, ctx):
 
         if has_role('Server Admin', ctx.author.roles):
-            help_embed = EmbedConstructor(
-                'Admins + Users commands: ',
-                ['__**Admins**__', 'Empty'],
-                ['!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'],
-                ['!d <number>', 'Deletes <number> messages from the channel'],
-                ['!reload', 'Reloads cogs'],
-                ['__**Users**__', 'Empty'],
-                ['!info <user>', 'Shows <users> info'],
-                ['!ping', 'echo PONG']).construct()
+            help_embed = EmbedConstructor('Server commands', 0, help_fields).construct()
         else:
-            help_embed = EmbedConstructor('Users commands',
-                                          ['!info <user>', 'Shows <users> info'], ['!ping', 'echo PONG']).construct()
+            help_embed = EmbedConstructor('Server commands', 4, help_fields).construct()
         await ctx.send(embed=help_embed)
 
-    @commands.check(is_mod)
+    @commands.has_role('Server Admin')
     @commands.command(pass_context=True)
     async def perms(self, ctx, member: Member = None):
 
@@ -119,8 +107,8 @@ class Moderation:
             data.set_author(name=name)
         await ctx.send(embed=data)
 
-    @commands.check(is_mod)
     @commands.command(name='d', pass_context=True)
+    @commands.has_role('Server Admin')
     async def delete_messages(self, ctx, number: int):
 
             print(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
@@ -130,6 +118,12 @@ class Moderation:
     @commands.command(pass_context=True)
     async def ping(self, ctx):
         await ctx.send('Pong')
+
+    @commands.command()
+    async def test(self, ctx):
+        role = get(ctx.author.guild.roles, name='Friends')
+        await ctx.author.add_roles(role)
+        await ctx.send(role)
 
 
 def setup(bot):
