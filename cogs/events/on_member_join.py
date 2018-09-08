@@ -1,7 +1,7 @@
 from discord.utils import get
 
 
-class Onmember_actions:
+class OnMemberActions:
 
     def __init__(self, bot):
         self.bot = bot
@@ -17,4 +17,4 @@ class Onmember_actions:
 
 
 def setup(bot):
-    bot.add_cog(Onmember_actions(bot))
+    bot.add_cog(OnMemberActions(bot))
