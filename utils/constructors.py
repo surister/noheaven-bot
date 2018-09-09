@@ -19,11 +19,8 @@ class EmbedConstructor:
         custom_embed = Embed(title=self.title)
         a, b, c = '', '', ''
         for different_field in self.fields:
-            print(different_field)
             try:
                 a, b = different_field
-                print(a)
-                print(b)
             except ValueError:
                 c = different_field
             custom_embed.add_field(name=a, value=b, inline=False) if b is not None \

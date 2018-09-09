@@ -1,6 +1,6 @@
-import random
-import io
 import aiohttp
+import io
+import random
 
 from bs4 import BeautifulSoup
 
@@ -33,8 +33,8 @@ class Fun:
                         full_html = await resp.text()
                 soup = BeautifulSoup(full_html, 'html.parser')
 
-                images = [link.get('data-src') for link in soup.find_all('img') if link.get('data-src')]
-
+                images = [link.get('data-src') for link in soup.find_all('img') if link.get('data-src')]  #
+                # link.get('data-src') can also give None
                 async with aiohttp.ClientSession() as session:
                     async with session.get(random.choice(images)) as resp:
                         if resp.status != 200:

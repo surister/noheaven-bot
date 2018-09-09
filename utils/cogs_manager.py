@@ -19,7 +19,7 @@ class StartupExtension:
                         if cog not in StartupExtension.blacklist:
                             cog_list.append(f'cogs.{element}.{cog}'.replace('.py', ''))
                 else:
-                    if element not in StartupExtension.blacklist:
+                    if element not in StartupExtension.blacklist:  # I guess this isn't necessary
                         cog_list.append(f'cogs.{element}'.replace('py', ''))
 
         return cog_list

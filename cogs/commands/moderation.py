@@ -108,7 +108,7 @@ class Moderation:
             data.set_author(name=name)
         await ctx.send(embed=data)
 
-    @commands.command(name='d', pass_context=True)
+    @commands.command(name='d')
     @commands.has_role('Server Admin')
     async def delete_messages(self, ctx, number: int):
 
@@ -119,12 +119,6 @@ class Moderation:
     @commands.command(pass_context=True)
     async def ping(self, ctx):
         await ctx.send('Pong')
-
-    @commands.command()
-    async def test(self, ctx):
-        role = get(ctx.author.guild.roles, name='Friends')
-        await ctx.author.add_roles(role)
-        await ctx.send(role)
 
 
 def setup(bot):

@@ -12,7 +12,6 @@ class OnMemberActions:
         await recepcion.send(f'Bienvenido {member.mention} a {member.guild.name}')
 
         role = get(member.guild.roles, name='Friends')
-        print(role)
         await member.add_roles(role)
 
 
