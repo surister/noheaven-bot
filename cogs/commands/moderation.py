@@ -1,6 +1,5 @@
 from discord import Embed, Member
 from discord.ext import commands
-from discord.utils import get
 
 from utils.constants import help_fields
 from utils.constructors import EmbedConstructor
@@ -33,6 +32,8 @@ class Moderation:
 
     @commands.command(pass_context=True, name='help')
     async def command_for_help(self, ctx):
+
+        # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
 
         if has_role('Server Admin', ctx.author.roles):
             help_embed = EmbedConstructor('Server commands', 0, help_fields).construct()
@@ -116,9 +117,14 @@ class Moderation:
             mgs = [message async for message in ctx.channel.history(limit=number+1)]
             await ctx.channel.delete_messages(mgs)
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def ping(self, ctx):
         await ctx.send('Pong')
+
+    @commands.command()
+    async def test(self, ctx):
+        await ctx.send(embed=
+                       EmbedConstructor('test', 0, ('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty')).construct())
 
 
 def setup(bot):

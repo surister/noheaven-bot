@@ -20,7 +20,8 @@ class Fun:
         self.bot = bot
 
     @commands.check(is_nsfw)
-    @commands.group(invoke_without_command=True)
+    @commands.group(invoke_without_command=True, aliases=['p'])
+    @commands.cooldown(2, 5)
     async def porn(self, ctx, arg):
 
             if arg.lower() not in nsfw_categories:
@@ -43,7 +44,8 @@ class Fun:
                         await ctx.channel.send(file=File(data, 'cool_image.png'))
 
     @commands.check(is_nsfw)
-    @commands.group(invoke_without_command=True)
+    @commands.group(invoke_without_command=True, alisaes=['g'])
+    @commands.cooldown(2, 5)
     async def gif(self, ctx, arg):
 
             if arg.lower() not in nsfw_categories:
