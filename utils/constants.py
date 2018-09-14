@@ -5,6 +5,7 @@ help_fields = (
                 ('!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'),
                 ('!d <number>', 'Deletes <number> messages from the channel'),
                 ('!reload', 'Reloads cogs'),
+                ('!garch delete <indice>', 'Borra el nombre de garch de ese indice, los indices empiezan en 0'),
                 ('__**Users**__', 'Commands avaliable for every user'),
                 ('!info <user>', 'Shows <users> info'),
                 ('!ping', 'echo PONG'),
@@ -12,7 +13,11 @@ help_fields = (
                 ('!porn <argument>', 'Sends an image of <argument> category'),
                 ('!porn list', 'Shows posible <argument>'),
                 ('!gif <argument>', 'Sends a gif of <argument> category'),
-                ('!gif list', 'Shows posible <argument>')
+                ('!gif list', 'Shows posible <argument>'),
+                ('__**Garch**__', 'Garch commands'),
+                ('!garch', 'Shows a random garch name'),
+                ('!garch save <name>', 'Saves new garch name'),
+                ('!garch list', 'Shows the saved list')
                 )
 
 nsfw_categories = ['amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',

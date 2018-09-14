@@ -36,9 +36,9 @@ class Moderation:
         # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
 
         if has_role('Server Admin', ctx.author.roles):
-            help_embed = EmbedConstructor('Server commands', 0, help_fields).construct()
+            help_embed = EmbedConstructor('Server commands', help_fields).construct()
         else:
-            help_embed = EmbedConstructor('Server commands', 4, help_fields).construct()
+            help_embed = EmbedConstructor('Server commands', help_fields[5:]).construct()
         await ctx.send(embed=help_embed)
 
     @commands.has_role('Server Admin')
@@ -124,7 +124,7 @@ class Moderation:
     @commands.command()
     async def test(self, ctx):
         await ctx.send(embed=
-                       EmbedConstructor('test', 0, ('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty')).construct())
+                       EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
 
 
 def setup(bot):

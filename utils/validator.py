@@ -1,5 +1,6 @@
 
 def contains_value(a, b, c):
+
     for stuff in b:
         if stuff.get(c) == a:
 
@@ -8,6 +9,7 @@ def contains_value(a, b, c):
 
 
 def has_role(to_check, roles, _id=None):
+
     if _id is not None:
 
         for rol in roles:
