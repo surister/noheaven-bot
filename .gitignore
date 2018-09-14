@@ -121,3 +121,4 @@ Pipfile.lock
 Pipfile/
 /logger
 *.json
+utils/garch.json
