@@ -25,7 +25,7 @@ class bot(Bot):
         return Disconnecting
 
 
-sur = bot('!', '!help -- para ayuda')
+sur = bot('!' if not debug_mode else 'b', '!help -- para ayuda')
 sur.remove_command('help')
 
 if __name__ == '__main__':
