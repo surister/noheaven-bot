@@ -5,7 +5,7 @@ from logger.bot_log import Log, Disconnecting
 from utils.cogs_manager import load_cogs
 from utils.login import Tokens
 
-debug_mode = False
+debug_mode = True
 
 
 class bot(Bot):
@@ -25,18 +25,18 @@ class bot(Bot):
         return Disconnecting
 
 
-sur = bot('!' if not debug_mode else 'b', '!help -- para ayuda')
-sur.remove_command('help')
+_bot = bot('!' if not debug_mode else 'b', '!help -- para ayuda')
+_bot.remove_command('help')
 
 if __name__ == '__main__':
 
-    load_cogs(sur)
+    load_cogs(_bot)
 
-    sur.run(Tokens.sur if debug_mode else Tokens.nhbot)
+    _bot.run(Tokens.sur if debug_mode else Tokens.nhbot)
 
-    if sur.is_closed():
+    if _bot.is_closed():
         try:
-            sur.bot_disconnect.disconnect()
+            _bot.bot_disconnect.disconnect()
         except Exception as e:
             print(e)
         finally:

@@ -35,7 +35,7 @@ class Fun:
                 soup = BeautifulSoup(full_html, 'html.parser')
 
                 images = [link.get('data-src') for link in soup.find_all('img') if link.get('data-src')]  #
-                # link.get('data-src') can also give None
+                # link.get('data-src') can also return None
                 async with aiohttp.ClientSession() as session:
                     async with session.get(random.choice(images)) as resp:
                         if resp.status != 200:

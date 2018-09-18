@@ -7,6 +7,7 @@ name = "pypi"
 "discord.py" = {ref = "rewrite", git = "https://github.com/Rapptz/discord.py"}
 "72eb2aa" = {file = "https://github.com/Rapptz/discord.py/archive/rewrite.zip"}
 "beautifulsoup4" = "*"
+tabulate = "*"
 
 [dev-packages]
 
