@@ -44,7 +44,7 @@ class Fun:
                         await ctx.channel.send(file=File(data, 'cool_image.png'))
 
     @commands.check(is_nsfw)
-    @commands.group(invoke_without_command=True, alisaes=['g'])
+    @commands.group(invoke_without_command=True, aliases=['g'])
     @commands.cooldown(2, 5)
     async def gif(self, ctx, arg):
 
