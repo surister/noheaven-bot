@@ -1,4 +1,7 @@
+from discord import File
 from discord.utils import get
+
+from assets.don_patch.extra.welcome_image import welcome_img
 
 
 class OnMemberActions:
@@ -8,11 +11,14 @@ class OnMemberActions:
 
     async def on_member_join(self, member):
 
-        recepcion = self.bot.get_channel(452530575618867200)
-        await recepcion.send(f'Bienvenido {member.mention} a {member.guild.name}')
+        channel = self.bot.get_channel(452530575618867200)
 
         role = get(member.guild.roles, name='Friends')
         await member.add_roles(role)
+        mgs = [message async for message in channel.history(limit=len(channel.history) + 1)]
+        await channel.delete_messages(mgs)
+        await channel.send(f'Bienvenido {member.mention} a {member.guild.name} ',
+                           file=File(welcome_img(member.display_name), 'welcome.png'))
 
 
 def setup(bot):

@@ -45,10 +45,5 @@ class Patch:
 
         await ctx.send(file=discord.File(rb_file, 'test.png'))
 
-    @commands.command()
-    async def asdf(self, ctx, member: discord.Member):
-        await ctx.send(file=discord.File(welcome_img(member.display_name), 'test.png'))
-
-
 def setup(bot):
     bot.add_cog(Patch(bot))
