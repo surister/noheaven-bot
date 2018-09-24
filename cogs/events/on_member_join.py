@@ -15,8 +15,7 @@ class OnMemberActions:
 
         role = get(member.guild.roles, name='Friends')
         await member.add_roles(role)
-        mgs = [message async for message in channel.history(limit=len(channel.history) + 1)]
-        await channel.delete_messages(mgs)
+        await channel.purge(limit=2)
         await channel.send(f'Bienvenido {member.mention} a {member.guild.name} ',
                            file=File(welcome_img(member.display_name), 'welcome.png'))
 
