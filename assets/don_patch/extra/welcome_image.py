@@ -8,7 +8,7 @@ path = os.path.dirname(__file__)
 
 def welcome_img(user: str):
 
-    im = Image.open(f"{path}t.png")
+    im = Image.open(f"{path}/t.png")
 
     #  User name text
     font = ImageFont.truetype(font_path, 150)
