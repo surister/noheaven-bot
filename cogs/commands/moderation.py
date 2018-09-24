@@ -119,7 +119,7 @@ class Moderation:
 
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send('Pong')
+        await ctx.send(f'Pong -> {self.bot.latency}')
 
     @commands.command()
     async def test(self, ctx):
