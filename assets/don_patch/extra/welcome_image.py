@@ -1,11 +1,14 @@
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 import io
 from assets.don_patch.patch_path import font_path
+import os
+
+path = os.path.dirname(__file__)
 
 
 def welcome_img(user: str):
 
-    im = Image.open("t.png")
+    im = Image.open(f"{path}t.png")
 
     #  User name text
     font = ImageFont.truetype(font_path, 150)
@@ -26,7 +29,7 @@ def welcome_img(user: str):
     im.paste(ImageOps.colorize(w, (0, 0, 0), (0, 0, 0)), (1400, 250),  w)
 
     pe = im.resize((1300, 1000))
-
     a = io.BytesIO()
     pe.save(a, format='PNG')
+
     return a.getvalue()
