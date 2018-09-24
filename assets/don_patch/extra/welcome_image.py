@@ -5,7 +5,7 @@ from assets.don_patch.patch_path import font_path
 
 def welcome_img(user: str):
 
-    im = Image.open("/home/surister/noheavenbot/assets/don_patch/extra/t.png")
+    im = Image.open("t.png")
 
     #  User name text
     font = ImageFont.truetype(font_path, 150)

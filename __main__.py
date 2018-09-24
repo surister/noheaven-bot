@@ -5,7 +5,7 @@ from logger.bot_log import Log, Disconnecting
 from utils.cogs_manager import load_cogs
 from utils.login import Tokens
 
-debug_mode = False
+debug_mode = True
 
 
 class bot(Bot):
