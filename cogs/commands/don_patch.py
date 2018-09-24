@@ -32,18 +32,19 @@ class Patch:
         self.bot = bot
 
     @commands.command(aliases=['vencido'])
-    async def beaten(self, ctx, user: discord.Member, l1: discord.Member, l2: discord.Member):
+    async def beaten(self, ctx, user, l1, l2):
 
         await ctx.channel.trigger_typing()
 
-        if check_is_member([user, l1, l2]):
+        # if check_is_member([user, l1, l2]):
 
-            rb_file = beaten_img(user.display_name, l1.display_name, l2.display_name)
-        else:
+            # rb_file = beaten_img(user.display_name, l1.display_name, l2.display_name)
+       # else:
 
-            rb_file = beaten_img(user, l1, l2)
+        rb_file = beaten_img(user, l1, l2)
 
         await ctx.send(file=discord.File(rb_file, 'test.png'))
+
 
 def setup(bot):
     bot.add_cog(Patch(bot))
