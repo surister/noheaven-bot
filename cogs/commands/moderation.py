@@ -1,10 +1,12 @@
+import json
+
 from discord import Embed, Member
 from discord.ext import commands
 
 from utils.constants import help_fields
 from utils.constructors import EmbedConstructor
 from utils.validator import has_role
-
+from utils.path import utils_path
 
 # TOdo logs aqui en todo
 
@@ -125,6 +127,16 @@ class Moderation:
     async def test(self, ctx):
         await ctx.send(embed=
                        EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
+
+    @commands.command(name= 'mute_chat')
+    async def _mute(self, ctx, member: Member):
+        with open(f'{utils_path}/muted.json', 'r') as f:
+            x = json.load(f)
+
+        x['users'].append(member.id)
+
+        with open(f'{utils_path}/muted.json', 'w') as f:
+            json.dump(x, f, indent=1)
 
 
 def setup(bot):
