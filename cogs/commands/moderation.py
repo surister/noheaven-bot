@@ -124,9 +124,14 @@ class Moderation:
         await ctx.send(f'Pong -> {self.bot.latency}')
 
     @commands.command()
-    async def test(self, ctx):
-        await ctx.send(embed=
-                       EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
+    async def test(self, ctx, member: Member):
+        # await ctx.send(embed=
+        #                EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
+
+        await member.edit(nick='kowalski')
+        print(member.nick)
+        print('alright')
+        print(type(member))
 
     @commands.command(name= 'mute_chat')
     async def _mute(self, ctx, member: Member):

@@ -9,6 +9,7 @@ class ErrorHandler:
     @staticmethod
     async def on_command_error(ctx, exception):
         embed = Embed(title=f' Error -> {exception}')
+        print(ctx, exception)
         await ctx.send(embed=embed)
 
     @staticmethod

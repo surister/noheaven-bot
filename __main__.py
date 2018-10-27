@@ -1,3 +1,5 @@
+from asyncio import sleep
+
 from discord import Game
 from discord.ext.commands import Bot, when_mentioned_or
 
@@ -14,6 +16,14 @@ class bot(Bot):
         super().__init__(
             command_prefix=when_mentioned_or(prefix),
             activity=Game(name=status_name))
+        self.bg_task = self.loop.create_task(self.background_task())
+
+    async def background_task(self):
+        await self.wait_until_ready()
+        member = self.get_guild(431125968455860224).get_member(150726664760983552)
+        if member.nick != 'kowalski':
+            await member.edit(nick='kowalski')
+        await sleep(600)
 
     @property
     def bot_log(self):
