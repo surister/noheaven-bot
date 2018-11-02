@@ -7,7 +7,7 @@ from logger.bot_log import Log, Disconnecting
 from utils.cogs_manager import load_cogs
 from utils.login import Tokens
 
-debug_mode = False
+debug_mode = True
 
 
 class bot(Bot):
@@ -20,6 +20,7 @@ class bot(Bot):
 
     async def background_task(self):
         await self.wait_until_ready()
+
         member = self.get_guild(431125968455860224).get_member(150726664760983552)
         if member.nick != 'kowalski':
             await member.edit(nick='kowalski')
