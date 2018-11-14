@@ -1,7 +1,8 @@
 import os
 from noheavenbot.cogs import cogs_path
 
-#Todo añadir logs en estas mierdas xd xd
+
+# Todo añadir logs en estas mierdas xd xd
 
 
 class StartupExtension:
