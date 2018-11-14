@@ -1,7 +1,7 @@
 from discord import File
 from discord.utils import get
 
-from assets.don_patch.extra.welcome_image import welcome_img
+from noheavenbot.assets.don_patch import welcome_img
 
 
 class OnMemberActions:

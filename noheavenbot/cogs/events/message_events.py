@@ -1,6 +1,6 @@
 import json
 
-from utils.path import utils_path
+from noheavenbot.utils import utils_path
 
 
 class OnMessage:

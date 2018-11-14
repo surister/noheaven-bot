@@ -3,10 +3,10 @@ import json
 from discord import Embed, Member
 from discord.ext import commands
 
-from utils.constants import help_fields
-from utils.constructors import EmbedConstructor
-from utils.validator import has_role
-from utils.path import utils_path
+from noheavenbot.utils.constants import help_fields
+from noheavenbot.utils.constructors import EmbedConstructor
+from noheavenbot.utils.validator import has_role
+from noheavenbot.utils import utils_path
 
 # TOdo logs aqui en todo
 

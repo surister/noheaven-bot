@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from discord import File
 from discord.ext import commands
 
-from utils.constants import nsfw_categories
+from noheavenbot.utils.constants import nsfw_categories
 
 
 def is_nsfw(ctx):

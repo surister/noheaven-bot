@@ -1,5 +1,5 @@
 from discord.ext import commands
-from utils.cogs_manager import load_cogs, unload_cogs
+from noheavenbot.utils.cogs_manager import load_cogs, unload_cogs
 
 
 class CogManagement:

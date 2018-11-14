@@ -1,5 +1,5 @@
 import os
-from cogs.path import cogs_path
+from noheavenbot.cogs import cogs_path
 
 #Todo añadir logs en estas mierdas xd xd
 

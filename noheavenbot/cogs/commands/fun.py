@@ -2,7 +2,7 @@ import json
 import random
 
 from discord.ext import commands
-from utils.path import utils_path
+from noheavenbot.utils import utils_path
 
 
 class Garch:

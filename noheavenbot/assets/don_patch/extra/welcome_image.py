@@ -1,6 +1,6 @@
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 import io
-from assets.don_patch.patch_path import font_path
+from noheavenbot.assets.don_patch import font_path
 import os
 
 path = os.path.dirname(__file__)
