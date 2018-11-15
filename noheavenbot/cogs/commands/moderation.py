@@ -126,14 +126,14 @@ class Moderation:
     @commands.command()
     async def test(self, ctx, member: Member):
         # await ctx.send(embed=
-        #                EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
+        # EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
 
         await member.edit(nick='kowalski')
         print(member.nick)
         print('alright')
         print(type(member))
 
-    @commands.command(name= 'mute_chat')
+    @commands.command(name='mute_chat')
     async def _mute(self, ctx, member: Member):
         with open(f'{utils_path}/muted.json', 'r') as f:
             x = json.load(f)
