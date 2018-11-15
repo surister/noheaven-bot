@@ -3,7 +3,7 @@ from discord.ext import commands
 from PIL import Image, ImageFont, ImageDraw
 import io
 
-from noheavenbot.assets.don_patch import path, font_path
+from noheavenbot.assets.don_patch import font_path, path
 
 
 def check_is_member(to_check: list):

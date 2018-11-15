@@ -26,3 +26,5 @@ nsfw_categories = ['amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'b
                    'sex', 'hairy', 'handjob', 'hardcore', 'hentai', 'indian', 'interracial', 'latina', 'lesbian',
                    'lingerie', 'masturbation', 'mature', 'milf', 'non-nude', 'panties', 'penis', 'pornstar', 'public',
                    'sex', 'pussy', 'redhead', 'self', 'shot', 'shemale', 'teen', '(18+)', 'threesome', 'toys']
+
+nsfw_lol = ['ahri']

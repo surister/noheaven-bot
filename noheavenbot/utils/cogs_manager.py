@@ -8,7 +8,7 @@ from noheavenbot.cogs import cogs_path
 class StartupExtension:
 
     blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py', '__pycache__.py',
-                 'error_handler.py', 'sample-out.jpg']
+                 'error_handler.py', 'sample-out.jpg', 'name_enforcer.py']
 
     @classmethod
     def to_array(cls):
