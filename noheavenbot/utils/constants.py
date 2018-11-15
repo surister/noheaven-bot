@@ -41,10 +41,11 @@ nsfw_lol = [
             ]
 
 nsfw_conversion = {
-    'conversion_index': ['taliya', 'camille', "kai'sa", "rek'sai", 'zoe'],
+    'conversion_index': ['taliya', 'camille', "kai'sa", "rek'sai", 'zoe', 'xayah'],
     'taliyah': '360-taliya',
     'camille': '363-camille',
     "kai'sa": '374-kai_sa',
     "rek'sai": '256-rek_sai',
-    'zoe': '373-zoe'
+    'zoe': '373-zoe',
+    'xayah': '370-xayah'
 }
