@@ -1,4 +1,4 @@
-# Put everything on a single namedtupple class like good boys do? perhaps.
+# Put everything on a single named tupple class like good boys do? perhaps.
 help_fields = (
                 ('__**Admins**__', 'Commands only avaliable for admins'),
                 ('!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'),
@@ -37,7 +37,7 @@ nsfw_lol = [
     'oriana', 'poppy', 'quinn', "rek'sai", 'riven', 'sejuani',
     'shyvana', 'sivir', 'sona', 'soraka', 'syndra', 'taliyah',
     'tristana', 'vayne', 'vi', 'xayah', 'zoe', 'zyra', 'group',
-    'cosplay', 'genderbender', 'male', 'irelia'
+    'cosplay', 'genderbender', 'male', 'irelia', 'jinx'
             ]
 
 nsfw_conversion = {

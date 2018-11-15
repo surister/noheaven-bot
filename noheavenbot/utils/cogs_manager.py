@@ -20,7 +20,7 @@ class StartupExtension:
                         if cog not in StartupExtension.blacklist:
                             cog_list.append(f'noheavenbot.cogs.{element}.{cog}'.replace('.py', ''))
                 else:
-                        cog_list.append(f'cogs.{element}'.replace('py', ''))
+                        cog_list.append(f'noheavenbot.cogs.{element}'.replace('py', ''))
 
         return cog_list
 
