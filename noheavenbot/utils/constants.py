@@ -21,12 +21,14 @@ help_fields = (
                 ('!garch list', 'Shows the saved list'),
                 )
 
-nsfw_categories = ['amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',
-                   'brunette', 'celebrity', 'college', 'creampie', 'cumshots', 'double', 'penetration', 'ebony',
-                   'emo', 'female-ejaculation', 'fisting', 'footjob', 'gangbang', 'gay', 'girlfriend', 'group',
-                   'sex', 'hairy', 'handjob', 'hardcore', 'hentai', 'indian', 'interracial', 'latina', 'lesbian',
-                   'lingerie', 'masturbation', 'mature', 'milf', 'non-nude', 'panties', 'penis', 'pornstar', 'public',
-                   'sex', 'pussy', 'redhead', 'self', 'shot', 'shemale', 'teen', '(18+)', 'threesome', 'toys']
+nsfw_categories = [
+    'amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',
+    'brunette', 'celebrity', 'college', 'creampie', 'cumshots', 'double', 'penetration', 'ebony',
+    'emo', 'female-ejaculation', 'fisting', 'footjob', 'gangbang', 'gay', 'girlfriend', 'group',
+    'sex', 'hairy', 'handjob', 'hardcore', 'hentai', 'indian', 'interracial', 'latina', 'lesbian',
+    'lingerie', 'masturbation', 'mature', 'milf', 'non-nude', 'panties', 'penis', 'pornstar', 'public',
+    'sex', 'pussy', 'redhead', 'self', 'shot', 'shemale', 'teen', '(18+)', 'threesome', 'toys'
+]
 
 nsfw_lol = [
     'ahri', 'akali', 'anivia', 'annie', 'ashe', 'caitlyn',
@@ -37,7 +39,7 @@ nsfw_lol = [
     'oriana', 'poppy', 'quinn', "rek'sai", 'riven', 'sejuani',
     'shyvana', 'sivir', 'sona', 'soraka', 'syndra', 'taliyah',
     'tristana', 'vayne', 'vi', 'xayah', 'zoe', 'zyra', 'group',
-    'cosplay', 'genderbender', 'male', 'irelia', 'jinx'
+    'cosplay', 'genderbender', 'male', 'irelia', 'jinx', 'random'
             ]
 
 nsfw_conversion = {

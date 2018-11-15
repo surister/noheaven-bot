@@ -74,6 +74,10 @@ class Fun:
     @commands.cooldown(2, 5)
     async def _lol(self, ctx, arg):
         src = 'href'
+
+        if arg in ('random', 'r'):
+            arg = random.choice(nsfw_lol)
+
         if arg.lower() not in nsfw_lol:
             return await ctx.send('Wrong category')
         if arg.lower() in nsfw_conversion['conversion_index']:
