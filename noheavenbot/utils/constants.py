@@ -39,7 +39,7 @@ nsfw_lol = [
     'oriana', 'poppy', 'quinn', "rek'sai", 'riven', 'sejuani',
     'shyvana', 'sivir', 'sona', 'soraka', 'syndra', 'taliyah',
     'tristana', 'vayne', 'vi', 'xayah', 'zoe', 'zyra', 'group',
-    'cosplay', 'genderbender', 'male', 'irelia', 'jinx', 'random'
+    'cosplay', 'genderbender', 'male', 'irelia', 'jinx', 'random or r'
             ]
 
 nsfw_conversion = {
