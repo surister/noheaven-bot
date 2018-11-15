@@ -18,7 +18,7 @@ class StartupExtension:
                 if os.path.isdir(f'{cogs_path}/{element}'):
                     for cog in os.listdir(f'{cogs_path}/{element}'):
                         if cog not in StartupExtension.blacklist:
-                            cog_list.append(f'cogs.{element}.{cog}'.replace('.py', ''))
+                            cog_list.append(f'noheavenbot.cogs.{element}.{cog}'.replace('.py', ''))
                 else:
                         cog_list.append(f'cogs.{element}'.replace('py', ''))
 
