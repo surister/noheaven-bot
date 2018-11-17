@@ -9,6 +9,8 @@ name = "pypi"
 "beautifulsoup4" = "*"
 tabulate = "*"
 requests = "*"
+youtube-dl = "*"
+pynacl = "*"
 
 [dev-packages]
 
@@ -17,5 +19,3 @@ python_version = "3"
 
 [scripts]
 start = "python3 -m noheavenbot"
-
-
