@@ -83,14 +83,24 @@ class Music:
         await ctx.send('Now playing: {}'.format(player.title))
 
     @commands.command()
-    async def volume(self, ctx, volume: int):
+    async def volume(self, ctx, volume: int = None):
         """Changes the player's volume"""
+        print(ctx.voice_client.pause)
+        if not hasattr(ctx.voice_client.source, 'volume'):
+            return await ctx.send('El volumen actual es 100%')
 
         if ctx.voice_client is None:
             return await ctx.send("Not connected to a voice channel.")
 
-        ctx.voice_client.source.volume = volume
-        await ctx.send("Changed volume to {}%".format(volume))
+        if volume is None:
+            return await ctx.send(f'El volumen actual es {int((ctx.voice_client.source.volume * 100) / 0.5)}%')
+
+        if 0 > volume < 100:
+            return await ctx.send('Volumen tiene que ser entre 0 y 100')
+
+        ctx.voice_client.source.volume = (volume * 0.5) / 100
+
+        await ctx.send(f'El volumen esta ahora al {volume}%')
 
     @commands.command()
     async def stop(self, ctx):
