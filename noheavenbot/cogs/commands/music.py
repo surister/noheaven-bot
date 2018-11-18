@@ -132,6 +132,12 @@ class Music:
     async def unpick(self, ctx):
         self.current_playlist = None
 
+    # Temporal check
+    @staticmethod
+    def is_sur(ctx):
+        return ctx.author.id == 243742080223019019
+
+    @commands.check(is_sur)
     @commands.command()
     async def play(self, ctx, *, url=None):
         """Streams from a url (same as yt, but doesn't predownload)"""
