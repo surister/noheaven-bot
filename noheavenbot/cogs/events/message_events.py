@@ -1,6 +1,6 @@
 import json
 
-from noheavenbot.utils import utils_path
+from noheavenbot.utils.constants import Path
 
 
 class OnMessage:
@@ -9,7 +9,7 @@ class OnMessage:
 
     @staticmethod
     async def on_message(message):
-        with open(f'{utils_path}/muted.json', 'r') as f:
+        with open(f'{Path.UTILS}/muted.json', 'r') as f:
             x = json.load(f)
         if message.author.id in x['users']:
             await message.delete()

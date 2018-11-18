@@ -1,6 +1,6 @@
 import os
-from noheavenbot.cogs import cogs_path
 
+from noheavenbot.utils.constants import Path
 
 # Todo añadir logs en estas mierdas xd xd
 
@@ -8,15 +8,15 @@ from noheavenbot.cogs import cogs_path
 class StartupExtension:
 
     blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py', '__pycache__.py',
-                 'error_handler.py', 'sample-out.jpg', 'name_enforcer.py']
+                 'error_handler.py', 'sample-out.jpg', 'name_enforcer.py', 'playlist.json']
 
     @classmethod
     def to_array(cls):
         cog_list = []
-        for element in os.listdir(cogs_path):
+        for element in os.listdir(Path.COGS):
             if element not in StartupExtension.blacklist:
-                if os.path.isdir(f'{cogs_path}/{element}'):
-                    for cog in os.listdir(f'{cogs_path}/{element}'):
+                if os.path.isdir(f'{Path.COGS}/{element}'):
+                    for cog in os.listdir(f'{Path.COGS}/{element}'):
                         if cog not in StartupExtension.blacklist:
                             cog_list.append(f'noheavenbot.cogs.{element}.{cog}'.replace('.py', ''))
                 else:

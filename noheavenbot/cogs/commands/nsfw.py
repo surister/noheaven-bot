@@ -11,7 +11,7 @@ from discord.ext import commands
 
 from requests import get
 
-from noheavenbot.utils.constants import nsfw_categories, nsfw_lol, nsfw_conversion
+from noheavenbot.utils.constants import Fields
 
 
 # Not optimal but html was so fucked up had to do something ugly like this.
@@ -48,7 +48,7 @@ class Fun:
             src = 'data-src'
             link = f'http://www.sex.com/pics/{arg.lower()}/'
 
-            if arg.lower() not in nsfw_categories:
+            if arg.lower() not in Fields.nsfw_categories:
                 return await ctx.send('Wrong category')
 
             async with ctx.channel.typing():
@@ -76,12 +76,12 @@ class Fun:
         src = 'href'
 
         if arg in ('random', 'r'):
-            arg = random.choice(nsfw_lol)
+            arg = random.choice(Fields.nsfw_lol)
 
-        if arg.lower() not in nsfw_lol:
+        if arg.lower() not in Fields.nsfw_lol:
             return await ctx.send('Wrong category')
-        if arg.lower() in nsfw_conversion['conversion_index']:
-            arg = nsfw_conversion[arg]
+        if arg.lower() in Fields.nsfw_conversion['conversion_index']:
+            arg = Fields.nsfw_conversion[arg]
 
         link = f'http://www.lolhentai.net/index?/category/{arg.lower()}/'
 
@@ -118,7 +118,7 @@ class Fun:
     @commands.cooldown(2, 5)
     async def gif(self, ctx, arg):
 
-            if arg.lower() not in nsfw_categories:
+            if arg.lower() not in Fields.nsfw_categories:
                 return await ctx.send('Wrong category')
 
             async with ctx.channel.typing():
@@ -139,9 +139,9 @@ class Fun:
 
         if str(ctx.command.parent) in ('porn', 'gif'):
 
-            await ctx.channel.send("** - **".join(nsfw_categories))
+            await ctx.channel.send("** - **".join(Fields.nsfw_categories))
         else:
-            await ctx.channel.send("** - **".join(nsfw_lol))
+            await ctx.channel.send("** - **".join(Fields.nsfw_lol))
 
     @gif.command(name='list')
     async def _list(self, ctx):

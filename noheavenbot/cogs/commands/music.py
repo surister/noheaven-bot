@@ -1,13 +1,17 @@
 import asyncio
 
+from collections import deque
+
 import discord
 import youtube_dl
 
 from discord.ext import commands
 
+from noheavenbot.utils.constants import Path
+from noheavenbot.utils.json_utils import Json
+
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
-
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -31,7 +35,7 @@ ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
 
 class YTDLSource(discord.PCMVolumeTransformer):
-    def __init__(self, source, *, data, volume=0.5):
+    def __init__(self, source, *, data, volume=0.3):
         super().__init__(source, volume)
 
         self.data = data
@@ -52,9 +56,31 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
+class Playlist:
+    FP = f'{Path.COMMANDS}/playlist.json'
+    number_of_playlists = len(Json.get(FP))
+
+    current_playlist = None
+
+    temp_playlist = ()
+
+    @classmethod
+    def create_playlist(cls, name: str) -> None:
+        cls.number_of_playlists += 1
+        playlist_name = name or cls.number_of_playlists
+        Json.write(cls.FP, [], playlist_name=playlist_name)
+
+    @classmethod
+    def delete_playlist(cls, index: int) -> None:
+        f = Json.get(cls.FP)
+        f.pop(index)
+        Json.write(cls.FP, f)
+
+
 class Music:
     def __init__(self, bot):
         self.bot = bot
+        self.current_playlist = None
 
     @staticmethod
     async def get_current_channel(ctx):
@@ -72,6 +98,14 @@ class Music:
 
         await channel.connect()
 
+    @commands.group()
+    async def playlist(self, ctx):
+        pass
+
+    @playlist.command()
+    async def make(self, ctx, *, name=None):
+        Playlist.create_playlist(name)
+
     @commands.command()
     async def play(self, ctx, *, url):
         """Streams from a url (same as yt, but doesn't predownload)"""
@@ -83,9 +117,17 @@ class Music:
         await ctx.send('Now playing: {}'.format(player.title))
 
     @commands.command()
+    async def pause(self, ctx):
+        ctx.voice_client.pause()
+
+    @commands.command()
+    async def resume(self, ctx):
+        ctx.voice_client.resume()
+
+    @commands.command()
     async def volume(self, ctx, volume: int = None):
         """Changes the player's volume"""
-        print(ctx.voice_client.pause)
+
         if not hasattr(ctx.voice_client.source, 'volume'):
             return await ctx.send('El volumen actual es 100%')
 
@@ -105,7 +147,6 @@ class Music:
     @commands.command()
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
-
         await ctx.voice_client.disconnect()
 
     @play.before_invoke

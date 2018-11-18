@@ -1,12 +1,14 @@
 import json
 
+from sys import exit
+
 from discord import Embed, Member
 from discord.ext import commands
 
-from noheavenbot.utils.constants import help_fields
+from noheavenbot.utils.constants import Fields, Path
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.validator import has_role
-from noheavenbot.utils import utils_path
+
 
 # TOdo logs aqui en todo
 
@@ -38,9 +40,9 @@ class Moderation:
         # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
 
         if has_role('Server Admin', ctx.author.roles):
-            help_embed = EmbedConstructor('Server commands', help_fields).construct()
+            help_embed = EmbedConstructor('Server commands', Fields.help_fields).construct()
         else:
-            help_embed = EmbedConstructor('Server commands', help_fields[5:]).construct()
+            help_embed = EmbedConstructor('Server commands', Fields.help_fields[5:]).construct()
         await ctx.send(embed=help_embed)
 
     @commands.has_role('Server Admin')
@@ -133,14 +135,15 @@ class Moderation:
         print('alright')
         print(type(member))
 
+    # Todo use json commands intead of this
     @commands.command(name='mute_chat')
     async def _mute(self, ctx, member: Member):
-        with open(f'{utils_path}/muted.json', 'r') as f:
+        with open(f'{Path.UTILS}/muted.json', 'r') as f:
             x = json.load(f)
 
         x['users'].append(member.id)
 
-        with open(f'{utils_path}/muted.json', 'w') as f:
+        with open(f'{Path.UTILS}/muted.json', 'w') as f:
             json.dump(x, f, indent=1)
 
 

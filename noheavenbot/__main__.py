@@ -8,7 +8,7 @@ from noheavenbot.logger.bot_log import Log, Disconnecting
 from noheavenbot.utils.cogs_manager import load_cogs
 from noheavenbot.utils.login import Tokens
 
-debug_mode = False
+debug_mode = True
 
 
 class bot(Bot):
@@ -37,7 +37,7 @@ class bot(Bot):
         return Disconnecting
 
 
-_bot = bot('!' if not debug_mode else 'b', '!help -- para ayuda')
+_bot = bot('!' if not debug_mode else '%', '!help -- para ayuda')
 _bot.remove_command('help')
 
 if __name__ == '__main__':
