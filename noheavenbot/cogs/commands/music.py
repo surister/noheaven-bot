@@ -1,10 +1,8 @@
+from typing import Union, List
+
 import asyncio
-
-from collections import deque
-
 import discord
 import youtube_dl
-
 from discord.ext import commands
 
 from noheavenbot.utils.constants import Path
@@ -60,42 +58,51 @@ class Playlist:
     FP = f'{Path.COMMANDS}/playlist.json'
     number_of_playlists = len(Json.get(FP))
 
-    current_playlist = None
-
-    temp_playlist = ()
-
     @classmethod
     def create_playlist(cls, name: str) -> None:
         cls.number_of_playlists += 1
         playlist_name = name or cls.number_of_playlists
-        Json.write(cls.FP, [], playlist_name=playlist_name)
+        Json.make_new_index(cls.FP, [], playlist_name=playlist_name)
 
     @classmethod
     def delete_playlist(cls, index: int) -> None:
         f = Json.get(cls.FP)
         f.pop(index)
-        Json.write(cls.FP, f)
+        Json.make_new_index(cls.FP, f)
 
 
 class Music:
     def __init__(self, bot):
         self.bot = bot
-        self.current_playlist = None
+        self.temp_playlist = []
+        self.playing = False
+        self.random_play = False
+    """
+    Bot is always going to be playing music from a playlist, whether it's a temporal one created by just concatenating
+    !play <song> calls or one created by the user manually.
+    """
+    @property
+    def playlist_index(self):
+        return [index for index in Json.get(Playlist.FP)]
+
+    async def get_playlist(self, index: Union[str, int, None]=None) -> List[str]:
+        if index is None:
+            return self.temp_playlist
+        return Json.get(Playlist.FP[index])
 
     @staticmethod
-    async def get_current_channel(ctx):
+    async def get_current_channel(ctx) -> discord.VoiceChannel:
         for channel in ctx.guild.channels:
             if isinstance(channel, discord.channel.VoiceChannel):
                 if ctx.author in channel.members:
                     return channel
 
     @commands.command()
-    async def join(self, ctx):
+    async def join(self, ctx) -> None:
         """Joins a voice channel"""
         channel = await self.get_current_channel(ctx)
         if ctx.voice_client is not None:
             return await ctx.voice_client.move_to(channel)
-
         await channel.connect()
 
     @commands.group()
@@ -104,17 +111,29 @@ class Music:
 
     @playlist.command()
     async def make(self, ctx, *, name=None):
+        if name in self.playlist_index:
+            return await ctx.send('This playlist already exists')
         Playlist.create_playlist(name)
+        return ctx.send('Se ha creado la playlist {index}')
+
+    @playlist.command()
+    async def add(self, ctx, index: Union[str, int], *, url):
+        if index not in self.playlist_index:
+            return await ctx.send('Esa playlist no existe')
+        Json.add_new_value(Playlist.FP, index, url)
+        return ctx.send(f'Se ha añadido la canción {url} a la playlist {index}')
 
     @commands.command()
-    async def play(self, ctx, *, url):
+    async def play(self, ctx, *, url=None):
         """Streams from a url (same as yt, but doesn't predownload)"""
 
-        async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
-            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+        if url in self.playlist_index:
+            async with ctx.typing():
+                for song in await self.get_playlist(url):
+                    player = await YTDLSource.from_url(song, loop=self.bot.loop, stream=True)
+                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                    await ctx.send('Now playing: {}'.format(player.title))
 
-        await ctx.send('Now playing: {}'.format(player.title))
 
     @commands.command()
     async def pause(self, ctx):
@@ -123,6 +142,11 @@ class Music:
     @commands.command()
     async def resume(self, ctx):
         ctx.voice_client.resume()
+
+    @commands.command()
+    async def stop(self, ctx):
+        """Stops and disconnects the bot from voice"""
+        await ctx.voice_client.disconnect()
 
     @commands.command()
     async def volume(self, ctx, volume: int = None):
@@ -143,11 +167,6 @@ class Music:
         ctx.voice_client.source.volume = (volume * 0.5) / 100
 
         await ctx.send(f'El volumen esta ahora al {volume}%')
-
-    @commands.command()
-    async def stop(self, ctx):
-        """Stops and disconnects the bot from voice"""
-        await ctx.voice_client.disconnect()
 
     @play.before_invoke
     async def ensure_voice(self, ctx):
