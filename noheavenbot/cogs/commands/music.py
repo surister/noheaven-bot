@@ -77,6 +77,7 @@ class Music:
         self.temp_playlist = []
         self.playing = False
         self.random_play = False
+        self.current_playlist = None
     """
     Bot is always going to be playing music from a playlist, whether it's a temporal one created by just concatenating
     !play <song> calls or one created by the user manually.
@@ -123,6 +124,14 @@ class Music:
         Json.add_new_value(Playlist.FP, index, url)
         return ctx.send(f'Se ha añadido la canción {url} a la playlist {index}')
 
+    @playlist.command()
+    async def pick(self, ctx, *, arg):
+        self.current_playlist = arg
+
+    @playlist.command()
+    async def unpick(self, ctx):
+        self.current_playlist = None
+
     @commands.command()
     async def play(self, ctx, *, url=None):
         """Streams from a url (same as yt, but doesn't predownload)"""
@@ -133,7 +142,12 @@ class Music:
                     player = await YTDLSource.from_url(song, loop=self.bot.loop, stream=True)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                     await ctx.send('Now playing: {}'.format(player.title))
-
+        else:
+            self.temp_playlist.append(url)
+            for song in await self.get_playlist(None):
+                player = await YTDLSource.from_url(song, loop=self.bot.loop, stream=True)
+                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                await ctx.send('Now playing: {}'.format(player.title))
 
     @commands.command()
     async def pause(self, ctx):
