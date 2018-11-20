@@ -146,6 +146,5 @@ class Moderation:
         with open(f'{Path.UTILS}/muted.json', 'w') as f:
             json.dump(x, f, indent=1)
 
-
 def setup(bot):
     bot.add_cog(Moderation(bot))
