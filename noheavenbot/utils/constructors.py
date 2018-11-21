@@ -1,11 +1,12 @@
 from discord import Embed
+from typing import Union
 
 
 class EmbedConstructor:
 
     __slots__ = ['title', 'fields', 'n', 'raw_fields']
 
-    def __init__(self, title, fields: tuple):
+    def __init__(self, title: str, fields: Union[tuple, list]):
 
         self.title = title
         self.raw_fields = fields

@@ -1,6 +1,7 @@
 from typing import NamedTuple
 from pathlib import PurePath
 
+
 class Fields(NamedTuple):
 
     help_fields = (
@@ -22,8 +23,21 @@ class Fields(NamedTuple):
                     ('__**Garch**__', 'Garch commands'),
                     ('!garch', 'Shows a random garch name'),
                     ('!garch save <name>', 'Saves new garch name'),
-                    ('!garch list', 'Shows the saved list'),
+                    ('!garch list', 'Shows the saved list')
                     )
+    music_fields = (
+        ('__**Musica**__', 'Comandos de musica'),
+        ('!play <cancion>', 'Toca la <cancion>'),
+        ('!next', 'Salta a la siguiente cancion, si no hay ninguna espera 60 segundos'),
+        ('!stop', 'Cierra el bot')
+        ('')
+    )
+    a = [
+        ('test', 'boi'),
+        ('test2', 'boi'),
+        ('test3', 'running karma', 'running karma', 'running karma'),
+        ('hok', ' boi'),
+    ]
 
     nsfw_categories = [
         'amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',

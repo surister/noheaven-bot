@@ -11,6 +11,7 @@ tabulate = "*"
 requests = "*"
 youtube-dl = "*"
 pynacl = "*"
+numpy = "*"
 
 [dev-packages]
 
