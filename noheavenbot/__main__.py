@@ -8,7 +8,7 @@ from noheavenbot.logger.bot_log import Log, Disconnecting
 from noheavenbot.utils.cogs_manager import load_cogs
 from noheavenbot.utils.login import Tokens
 
-debug_mode = True
+debug_mode = False
 
 
 class bot(Bot):
