@@ -34,7 +34,7 @@ class Moderation:
         finally:
             exit(0)
 
-    @commands.command(pass_context=True, name='help')
+    @commands.command(name='help')
     async def command_for_help(self, ctx):
 
         # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
@@ -45,8 +45,13 @@ class Moderation:
             help_embed = EmbedConstructor('Server commands', Fields.help_fields[5:]).construct()
         await ctx.send(embed=help_embed)
 
+    @commands.command()
+    async def music(self, ctx):
+        help_embed = EmbedConstructor('Music commands', Fields.music_fields).construct()
+        await ctx.send(embed=help_embed)
+
     @commands.has_role('Server Admin')
-    @commands.command(pass_context=True)
+    @commands.command()
     async def perms(self, ctx, member: Member = None):
 
         if member is None:
@@ -68,7 +73,7 @@ class Moderation:
                     embed.add_field(name=perm[0], value=':x:')
             await ctx.send(embed=embed)
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def info(self, ctx, *, user: Member):
 
         roles = [x.name for x in user.roles if x.name != "@everyone"]
@@ -91,7 +96,7 @@ class Moderation:
             game = "[{}]".format(user.activity.name)
 
         if roles:
-            roles = sorted(roles, key=[x.name for x in ctx.guild.role_hierarchy
+            roles = sorted(roles, key=[x.name for x in ctx.guild.roles
                                        if x.name != "@everyone"].index)
             roles = ", ".join(roles)
         else:
@@ -145,6 +150,7 @@ class Moderation:
 
         with open(f'{Path.UTILS}/muted.json', 'w') as f:
             json.dump(x, f, indent=1)
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))
