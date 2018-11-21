@@ -292,14 +292,13 @@ class Music:
 
     @playlist.command(name="p")
     async def _play(self, ctx, index: str, _random: str= None):
-        print('h')
         await self.join(ctx)
         state = self.get_voice_state(ctx)
         if self.voice_client is not state.get_client:
             state.update_voice_client_connection(ctx.voice_client)
         state.activate_playlist(index, _random)
         state._next()
-        print(state.random_playlist)
+
 
     # TODO
     # Make playlist from temporal playlist
