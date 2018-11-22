@@ -1,5 +1,5 @@
 import random
-from typing import Union, List
+from typing import Union
 
 import asyncio
 import discord
@@ -7,7 +7,7 @@ import youtube_dl
 from discord.ext import commands
 
 from noheavenbot.utils.constructors import EmbedConstructor
-from noheavenbot.utils.constants import Path, Fields
+from noheavenbot.utils.constants import Path
 from noheavenbot.utils.json_utils import Json
 
 # Suppress noise about console usage from errors
@@ -153,7 +153,9 @@ class Voice:
 
                 break
             await asyncio.sleep(5)
-            timeout += 5
+
+            if not self.voice_client.is_playing():
+                timeout += 5
         self._next()
 
     async def play_music(self):
@@ -171,7 +173,6 @@ class Voice:
                 try:
                     if self.random_playlist:
                         current_song = random.choice(self.playlist)
-                        print(current_song)
                     else:
                         current_song = self.playlist[playlist_index]
                         playlist_index += 1
