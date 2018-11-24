@@ -316,7 +316,7 @@ class Music:
     @temp.command()
     async def copy(self, ctx, name: str):
         if not name:
-            return await ctx.send('Porfavor ponle un nombre')
+            return await ctx.send('Por favor ponle un nombre')
         Playlist.create_playlist(name)
         Playlist.add_element_to_index(name, self.temp_playlist)
         return await ctx.send(f'Creada la playlist {name}')
