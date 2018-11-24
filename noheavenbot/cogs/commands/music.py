@@ -111,17 +111,24 @@ class Voice:
     def update_voice_client_connection(self, client: discord.VoiceClient) -> None:
         self.voice_client = client
 
-    def activate_playlist(self, index, _random=None):
+    def update_ctx(self, ctx) -> None:
+        self.ctx = ctx
+
+    def activate_playlist(self, index, _random=None) -> None:
         self.play_playlist = True
         self.playlist_index = index
         self.playlist = Playlist.get_elements_from_index(index)
         if _random:
             self.random_playlist = True
 
-    def deactivate_playlist(self):
+    def deactivate_playlist(self) -> None:
         self.playlist = None
         self.play_playlist = False
         self.random_playlist = False
+
+    @property
+    def get_ctx(self):
+        return self.ctx
 
     @property
     def get_client(self) -> discord.VoiceClient:
@@ -192,12 +199,23 @@ class Music:
         self.random_play = False
 
         self.voice_states = {}
+        self.voice_client = None
+        # The bot voice client, got from bot.connect() and updated every time the bot joins a channel
 
     """
     Bot is always going to be playing music from a playlist, whether it's a temporal one created by just concatenating
     !play <song> calls or one created by the user manually.
     """
     #   -------- <Utility functions>
+    def update_basic_ctx_or_voice(self, ctx, state) -> None:
+        """
+        Checks whether client_voice or ctx objects need to be updated, if so, updates them.
+        """
+        if self.voice_client is not state.get_client:  # 1
+            state.update_voice_client_connection(ctx.voice_client)
+        if ctx is not state.get_ctx:
+            state.update_ctx(ctx)
+
     def get_voice_state(self, ctx):
         guild = ctx.guild
         state = self.voice_states.get(guild.id)
@@ -229,11 +247,8 @@ class Music:
         so we check if the one the Voice class is going to use and the current voice_client is the same, if it is not
         we just update it. This ensures total continuity among channel connections in different servers.
         """
-
         state = self.get_voice_state(ctx)
-        if self.voice_client is not state.get_client:  # 1
-            state.update_voice_client_connection(ctx.voice_client)
-
+        self.update_basic_ctx_or_voice(ctx, state)
         if song is not None:
             await state.queue.put(song)
             self.temp_playlist.append(song)
@@ -241,14 +256,17 @@ class Music:
     @commands.command()
     async def skip(self, ctx):
         self.voice_client.stop()
+        await ctx.send('Pasando de esta canción!')
 
     @commands.command()
     async def pause(self, ctx):
         ctx.voice_client.pause()
+        await ctx.send('Música pausada!')
 
     @commands.command()
     async def stop(self, ctx):
         await ctx.voice_client.disconnect()
+        await ctx.send('Hasta luego!')
 
     @commands.command()
     async def volume(self, ctx, volume: int = None):
@@ -275,9 +293,33 @@ class Music:
         if ctx.voice_client is not None:
             return await ctx.voice_client.move_to(channel)
         if channel is not None:
-            self.voice_client = await channel.connect()
+            self.voice_client = await channel.connect() # Updates voice_client when joining the channel
             return
         return await ctx.send('No estás conectado a un canal de voz')
+
+    @commands.group(invoke_without_command=True)
+    async def temp(self, ctx):
+        l = self.temp_playlist
+        if not self.temp_playlist:
+            return await ctx.send('La playlist temporal esta vacia')
+        await ctx.send(" - ".join(map(lambda x, y: f'{x[0]}: **{y}**', (enumerate(l)), l)))
+
+    @temp.command(name='d')
+    async def temp_delete(self, ctx, index: int):
+        if not isinstance(index, int):
+            return await ctx.send('El índice tiene que ser un número')
+        deleted_song = self.temp_playlist[index]
+        self.temp_playlist.pop(index)
+        await ctx.send(f'Borrado la canción {deleted_song}')
+        return await self.bot.get_command('temp').invoke(ctx)
+
+    @temp.command()
+    async def copy(self, ctx, name: str):
+        if not name:
+            return await ctx.send('Porfavor ponle un nombre')
+        Playlist.create_playlist(name)
+        Playlist.add_element_to_index(name, self.temp_playlist)
+        return await ctx.send(f'Creada la playlist {name}')
 
     @commands.group(invoke_without_command=True)
     async def playlist(self, ctx):
@@ -300,24 +342,8 @@ class Music:
         state.activate_playlist(index, _random)
         state._next()
 
-
     # TODO
-    # Make playlist from temporal playlist
-    # Play a playlist command (!playlist test1 play)
-    # Play a playlist randomly command (!play test1 play random)
-    # Check if the requester is connected to a voice channel. # done already i think, by
     # 5 Use paginator to improve playlists info?
-    @playlist.command(name='tcopy')
-    async def t_copy(self, ctx, name: str):
-        if not name:
-            return await ctx.send('Porfavor ponle un nombre')
-        Playlist.create_playlist(name)
-        Playlist.add_element_to_index(name, self.temp_playlist)
-        return await ctx.send(f'Creada la playlist {name}')
-
-    @playlist.command()
-    async def temp(self, ctx):
-        await ctx.send(" - ".join(map(lambda x: f'**{x}**', self.temp_playlist)))
 
     @playlist.command()
     async def make(self, ctx, *, name: str = None):
