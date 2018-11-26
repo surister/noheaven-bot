@@ -1,3 +1,4 @@
+import os
 from asyncio import sleep
 
 from discord import Game
@@ -8,10 +9,14 @@ from noheavenbot.logger.bot_log import Log, Disconnecting
 from noheavenbot.utils.cogs_manager import load_cogs
 from noheavenbot.utils.login import Tokens
 
-debug_mode = True
+try:
+    debug_mode = os.environ['DEBUG_MODE']
+except KeyError:
+    debug_mode = False
 
 
 class bot(Bot):
+    # I know, camel case.
     def __init__(self, prefix, status_name):
 
         super().__init__(
