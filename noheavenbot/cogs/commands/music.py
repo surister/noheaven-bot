@@ -145,6 +145,7 @@ class Voice:
     async def notify_queue(self, song):
         embed = discord.Embed(title=f'La canción **{song}** se ha añadido a la cola')
         embed.add_field(name=f'Canción pedida por {self.ctx.author}', value='\u200b')
+        await self.ctx.send(embed=embed)
 
     def _next(self) -> None:
         self.bot.loop.call_soon_threadsafe(self.flow_control.set)
@@ -255,6 +256,7 @@ class Music:
         self.update_basic_ctx_or_voice(ctx, state)
         if song is not None:
             if ctx.voice_client.is_playing():
+                print('nani')
                 await state.notify_queue(song)
             await state.queue.put(song)
             self.temp_playlist.append(song)

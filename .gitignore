@@ -110,10 +110,12 @@ dmypy.json
 *.idea/
 
 # bot-nh
-/home/surister/noheavenbot/utils/login.py
 noheavenbot/utils/login.py
+
+
 *.lock
 Pipfile
+login.py
 
 Pipfile/
 /noheavenbot/logger
