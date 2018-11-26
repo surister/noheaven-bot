@@ -74,8 +74,8 @@ class Fields(NamedTuple):
                 ]
 
     nsfw_conversion = {
-        'conversion_index': ['taliya', 'camille', "kai'sa", "rek'sai", 'zoe', 'xayah'],
-        'taliyah': '360-taliya',
+        'conversion_index': ['taliyah', 'camille', "kai'sa", "rek'sai", 'zoe', 'xayah'],
+        'taliyah': '360-taliyah',
         'camille': '363-camille',
         "kai'sa": '374-kai_sa',
         "rek'sai": '256-rek_sai',

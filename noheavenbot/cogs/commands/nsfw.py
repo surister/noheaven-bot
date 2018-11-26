@@ -92,9 +92,10 @@ class Fun:
 
             soup = BeautifulSoup(full_html, 'html.parser')
 
-            # This is get from requests, yes I do know that it could block but aiohttp loses html code that is
+            # This is gotten from requests, yes I do know that it could block but aiohttp loses html code that is
             # critical to get the final image, requests on the other hand doesn't, the http call lasts less than
-            # a second so as long as the original webpage is alright, there will be no blocking.
+            # a second so as long as the original webpage is alright, there will be no blocking. Maybe change to
+            # requests-html since it supports asyncio operations?
             # Todo implemente a timeout so we are always 100% sure
             images = [link.get(src) for link in soup.find_all('a') if link.get(src)]  #
             images = filter_crap(images)
@@ -138,7 +139,6 @@ class Fun:
     async def nsfw_list(ctx):
 
         if str(ctx.command.parent) in ('porn', 'gif'):
-
             await ctx.channel.send("** - **".join(Fields.nsfw_categories))
         else:
             await ctx.channel.send("** - **".join(Fields.nsfw_lol))

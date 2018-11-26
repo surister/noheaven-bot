@@ -170,7 +170,7 @@ class Voice:
         playlist_index = 0
         while True:
             self.flow_control.clear()
-            # Once the task is created, it will always run, once it runs out of songs to play or it's disconnected
+            # Once the task is created, it will always run, once teh queu runs out of songs to play or the bot disc.
             # it will wait to get a new queue entry to play again. It is sure that it will be play since commands
             # like !play have to be used to add a new entry, and that command makes all the necessary checks/updates
             # to make everything work
