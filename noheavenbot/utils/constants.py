@@ -41,8 +41,9 @@ class Fields(NamedTuple):
         ('!playlist add <nombre> <cancion>', 'Añade la canción <cancion> a la playlist <nombre>'),
         ('!playlist del <nombre>', 'borra la playlist <nombre>'),
         ('!playlist dels <nombre> <cancion>', 'Borra la canción <cancion> de la playlist <nombre>'),
-        ('!playlist temp', 'Te muestra la lista temporal actual, esta se crea con las canciones que tocas con !play'),
-        ('!playlist tcopy <nombre>', 'Crea una playlist <nombre> con las canciones de la playlsit temporal'),
+        ('!temp', 'Te muestra la lista temporal actual, esta se crea con las canciones que tocas con !play'),
+        ('!temp copy <nombre>', 'Crea una playlist <nombre> con las canciones de la playlsit temporal'),
+        ('!temp d <índice>', 'Borra el la canción que esta en el <indice> Nota: Los indices empiezan en 0'),
         ('**Información adicional**', 'El bot tiene un timeout de 60 segundos, si en 60 segundos no toca musica, se sale del canal'),
     )
     a = [
