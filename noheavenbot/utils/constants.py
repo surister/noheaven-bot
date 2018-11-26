@@ -24,16 +24,19 @@ class Fields(NamedTuple):
                     ('!garch', 'Shows a random garch name'),
                     ('!garch save <name>', 'Saves new garch name'),
                     ('!garch list', 'Shows the saved list'),
-                    ('!music', 'Shows you the music options')
+                    ('!music', 'Shows you the music options'),
+                    ('!text <texto - >', 'Transforms <texto> in emoji text'),
+                    ('!beaten <destructor> <vencido1> <vencido2>', 'Shows your enemies who the boss is')
                     )
     music_fields = (
         ('!music', 'muestra este mensaje'),
-        ('!play <cancion>', 'Toca la <cancion>'),
-        ('!skip', 'Salta a la siguiente cancion, si no hay ninguna espera 60 segundos'),
+        ('!play <canción>', 'Toca la <canción>'),
+        ('!skip', 'Salta a la siguiente canción, si no hay ninguna espera 60 segundos'),
         ('!stop', 'Cierra el bot'),
         ('!pause', 'La música se pausa'),
         ('!resume', 'La musica continua'),
         ('!volumen', 'Te dice el volumen actual'),
+        ('!volumen <numero>', 'Cambia el volumen global a <numero> 0-100'),
         ('!join', 'Mueve el bot a tu canal (No necesario hacerlo, play lo hace automaticamente'),
         ('!playlist', 'Te muestra las 5 primeras playlists que existen, con 3 canciones cada una'),
         ('!playlist p <nombredeplaylist> <r>', 'Empieza a tocar la playlist, si añades la opcion "r", la toca random.'),
@@ -46,12 +49,6 @@ class Fields(NamedTuple):
         ('!temp d <índice>', 'Borra el la canción que esta en el <indice> Nota: Los indices empiezan en 0'),
         ('**Información adicional**', 'El bot tiene un timeout de 60 segundos, si en 60 segundos no toca musica, se sale del canal'),
     )
-    a = [
-        ('test', 'boi'),
-        ('test2', 'boi'),
-        ('test3', 'running karma', 'running karma', 'running karma'),
-        ('hok', ' boi'),
-    ]
 
     nsfw_categories = [
         'amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',

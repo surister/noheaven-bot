@@ -142,6 +142,10 @@ class Voice:
                             value=f'modo {"random" if self.random_playlist else "normal"}', inline=False)
         await self.ctx.send(embed=embed)
 
+    async def notify_queue(self, song):
+        embed = discord.Embed(title=f'La canción **{song}** se ha añadido a la cola')
+        embed.add_field(name=f'Canción pedida por {self.ctx.author}', value='\u200b')
+
     def _next(self) -> None:
         self.bot.loop.call_soon_threadsafe(self.flow_control.set)
 
@@ -250,8 +254,12 @@ class Music:
         state = self.get_voice_state(ctx)
         self.update_basic_ctx_or_voice(ctx, state)
         if song is not None:
+            if ctx.voice_client.is_playing():
+                await state.notify_queue(song)
             await state.queue.put(song)
             self.temp_playlist.append(song)
+        else:
+            await ctx.send('¿¡Pero que quieres que toque!?')
 
     @commands.command()
     async def skip(self, ctx):

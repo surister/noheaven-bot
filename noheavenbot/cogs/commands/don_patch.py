@@ -10,6 +10,9 @@ def check_is_member(to_check: list):
     return all(map(lambda x: isinstance(x, discord.Member), to_check))
 
 
+# TODO update this (path)
+
+
 def beaten_img(w, l1, l2):
     img = Image.open(f"{path}/patch_beaten2.jpg")
     draw = ImageDraw.Draw(img)
@@ -36,13 +39,12 @@ class Patch:
         await ctx.channel.trigger_typing()
 
         # if check_is_member([user, l1, l2]):
-
-            # rb_file = beaten_img(user.display_name, l1.display_name, l2.display_name)
-       # else:
+        # rb_file = beaten_img(user.display_name, l1.display_name, l2.display_name)
+        # else:
 
         rb_file = beaten_img(user, l1, l2)
 
-        await ctx.send(file=discord.File(rb_file, 'test.png'))
+        await ctx.send(file=discord.File(rb_file, 'beaten.png'))
 
 
 def setup(bot):
