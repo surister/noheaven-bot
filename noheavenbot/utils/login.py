@@ -1,6 +1,7 @@
+from typing import NamedTuple
 
 
-class Tokens:
+class Tokens(NamedTuple):
 
-    sur = 'NDQ2NzE4NDAzMjk0NTI3NDk5.DmgDuA.IdCRHgAROLWRherWyZP9I_oCjmg'
-    nhbot = 'NDM3MzcwMjI1Njk3MjI2NzUz.DmftEA.RJVn52EPBF5GwVsvAoMVQHIFwBk'
+    sur = 'NDQ2NzE4NDAzMjk0NTI3NDk5.DuhDlQ.pZz55Lh2tyYPwMiEUhPJ4od1LdU'
+    nhbot = 'NDM3MzcwMjI1Njk3MjI2NzUz.DuhDtA.urS_QnYWVnCYuVmtZy_TS5mzKGQ'

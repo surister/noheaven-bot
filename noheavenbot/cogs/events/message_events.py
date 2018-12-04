@@ -9,10 +9,12 @@ class OnMessage:
 
     @staticmethod
     async def on_message(message):
+        print('mesage event')
         with open(f'{Path.UTILS}/muted.json', 'r') as f:
             x = json.load(f)
         if message.author.id in x['users']:
             await message.delete()
+            await message.author.send('Estas muteado.')
 
 
 def setup(bot):

@@ -6,6 +6,7 @@ class Fields(NamedTuple):
 
     help_fields = (
                     ('__**Admins**__', 'Commands only avaliable for admins'),
+                    ('!reset', 'resets the bots, only admins can do that'),
                     ('!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'),
                     ('!d <number>', 'Deletes <number> messages from the channel'),
                     ('!reload', 'Reloads cogs'),

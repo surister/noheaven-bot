@@ -27,7 +27,7 @@ class Moderation:
     @commands.command(name='reset')
     async def bot_exit(self, ctx):
 
-        await ctx.send('Apagando..')
+        await ctx.send('Reiniciando..')
         try:
             self.bot.bot_disconnect.disconnect()
         except Exception as e:
@@ -142,7 +142,7 @@ class Moderation:
         print(type(member))
 
     # Todo use json commands intead of this
-    @commands.command(name='mute_chat')
+    @commands.command(name='mute')
     async def _mute(self, ctx, member: Member):
         with open(f'{Path.UTILS}/muted.json', 'r') as f:
             x = json.load(f)
