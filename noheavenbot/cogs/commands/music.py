@@ -321,7 +321,7 @@ class Music:
         deleted_song = self.temp_playlist[index]
         self.temp_playlist.pop(index)
         await ctx.send(f'Borrado la canción {deleted_song}')
-        return await self.bot.get_command('temp').invoke(ctx)
+        await self.bot.get_command('temp').invoke(ctx)
 
     @temp.command()
     async def copy(self, ctx, name: str):
@@ -329,7 +329,7 @@ class Music:
             return await ctx.send('Por favor ponle un nombre')
         Playlist.create_playlist(name)
         Playlist.add_element_to_index(name, self.temp_playlist)
-        return await ctx.send(f'Creada la playlist {name}')
+        await ctx.send(f'Creada la playlist {name}')
 
     @commands.group(invoke_without_command=True)
     async def playlist(self, ctx):

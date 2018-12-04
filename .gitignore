@@ -115,12 +115,10 @@ noheavenbot/utils/login.py
 
 *.lock
 Pipfile
-login.py
 
 Pipfile/
 /noheavenbot/logger
 *.json
-
-/noheaven/utils/garch.json
-/home/surister/noheavenbot/utils/garch.json
+noheaven/utils/garch.json
+home/surister/noheavenbot/utils/garch.json
 

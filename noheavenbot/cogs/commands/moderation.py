@@ -13,8 +13,9 @@ from noheavenbot.utils.validator import has_role
 # TOdo logs aqui en todo
 
 
-def is_surister(ctx):
-    return ctx.author.id == 243742080223019019
+def is_allowed(ctx):
+    return ctx.author.id in (243742080223019019, 150726664760983552, 249482959357214720)
+    # sur, alpha, drew
 
 
 class Moderation:
@@ -22,8 +23,8 @@ class Moderation:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.check(is_surister)
-    @commands.command(name='exit')
+    @commands.check(is_allowed)
+    @commands.command(name='reset')
     async def bot_exit(self, ctx):
 
         await ctx.send('Apagando..')
