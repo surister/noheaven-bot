@@ -3,11 +3,11 @@ import json
 from sys import exit
 
 from discord import Embed, Member
-from discord.ext import commands
+from discord.ext.commands import command, check, has_role
 
 from noheavenbot.utils.constants import Fields, Path
 from noheavenbot.utils.constructors import EmbedConstructor
-from noheavenbot.utils.validator import has_role
+from noheavenbot.utils.validator import has_role as check_roles
 
 
 # TOdo logs aqui en todo
@@ -23,8 +23,8 @@ class Moderation:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.check(is_allowed)
-    @commands.command(name='reset')
+    @check(is_allowed)
+    @command(name='reset')
     async def bot_exit(self, ctx):
 
         await ctx.send('Reiniciando..')
@@ -35,24 +35,24 @@ class Moderation:
         finally:
             exit(0)
 
-    @commands.command(name='help')
+    @command(name='help')
     async def command_for_help(self, ctx):
 
         # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
 
-        if has_role('Server Admin', ctx.author.roles):
+        if check_roles('Server Admin', ctx.author.roles):
             help_embed = EmbedConstructor('Server commands', Fields.help_fields).construct()
         else:
             help_embed = EmbedConstructor('Server commands', Fields.help_fields[5:]).construct()
         await ctx.send(embed=help_embed)
 
-    @commands.command()
+    @command()
     async def music(self, ctx):
         help_embed = EmbedConstructor('Music commands', Fields.music_fields).construct()
         await ctx.send(embed=help_embed)
 
-    @commands.has_role('Server Admin')
-    @commands.command()
+    @has_role('Server Adminn')
+    @command()
     async def perms(self, ctx, member: Member = None):
 
         if member is None:
@@ -74,7 +74,7 @@ class Moderation:
                     embed.add_field(name=perm[0], value=':x:')
             await ctx.send(embed=embed)
 
-    @commands.command()
+    @command()
     async def info(self, ctx, *, user: Member):
 
         roles = [x.name for x in user.roles if x.name != "@everyone"]
@@ -119,19 +119,19 @@ class Moderation:
             data.set_author(name=name)
         await ctx.send(embed=data)
 
-    @commands.command(name='d')
-    @commands.has_role('Server Admin')
+    @command(name='d')
+    @has_role('Server Admin')
     async def delete_messages(self, ctx, number: int):
 
             print(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
             mgs = [message async for message in ctx.channel.history(limit=number+1)]
             await ctx.channel.delete_messages(mgs)
 
-    @commands.command()
+    @command()
     async def ping(self, ctx):
         await ctx.send(f'Pong -> {self.bot.latency}')
 
-    @commands.command()
+    @command()
     async def test(self, ctx, member: Member):
         # await ctx.send(embed=
         # EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
@@ -142,7 +142,7 @@ class Moderation:
         print(type(member))
 
     # Todo use json commands intead of this
-    @commands.command(name='mute')
+    @command(name='mute')
     async def _mute(self, ctx, member: Member):
         with open(f'{Path.UTILS}/muted.json', 'r') as f:
             x = json.load(f)

@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext.commands import command
 from PIL import Image, ImageFont, ImageDraw
 import io
 
@@ -33,7 +33,7 @@ class Patch:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=['vencido'])
+    @command(aliases=['vencido'])
     async def beaten(self, ctx, user, l1, l2):
 
         await ctx.channel.trigger_typing()
