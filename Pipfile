@@ -12,6 +12,7 @@ requests = "*"
 youtube-dl = "*"
 pynacl = "*"
 numpy = "*"
+asyncpg = "*"
 
 [dev-packages]
 
