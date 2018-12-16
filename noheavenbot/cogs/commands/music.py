@@ -4,7 +4,7 @@ from typing import Union
 import asyncio
 import discord
 import youtube_dl
-from discord.ext import commands
+from discord.ext.commands import command, group, has_role
 
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.constants import Path
@@ -238,11 +238,11 @@ class Music:
 
     # -------- </...>
 
-    @commands.command(name='continue')
+    @command(name='continue')
     async def _continue(self, ctx):
         ctx.voice_client.resume()
 
-    @commands.command()
+    @command()
     async def play(self, ctx, *, song=None):
         """
         # 1
@@ -263,22 +263,22 @@ class Music:
         else:
             await ctx.send('¿¡Pero que quieres que toque!?')
 
-    @commands.command()
+    @command()
     async def skip(self, ctx):
         self.voice_client.stop()
         await ctx.send('Pasando de esta canción!')
 
-    @commands.command()
+    @command()
     async def pause(self, ctx):
         ctx.voice_client.pause()
         await ctx.send('Música pausada!')
 
-    @commands.command()
+    @command()
     async def stop(self, ctx):
         await ctx.voice_client.disconnect()
         await ctx.send('Hasta luego!')
 
-    @commands.command()
+    @command()
     async def volume(self, ctx, volume: int = None):
 
         if not hasattr(ctx.voice_client.source, 'volume'):
@@ -303,11 +303,11 @@ class Music:
         if ctx.voice_client is not None:
             return await ctx.voice_client.move_to(channel)
         if channel is not None:
-            self.voice_client = await channel.connect() # Updates voice_client when joining the channel
+            self.voice_client = await channel.connect()  # Updates voice_client when joining the channel
             return
         return await ctx.send('No estás conectado a un canal de voz')
 
-    @commands.group(invoke_without_command=True)
+    @group(invoke_without_command=True)
     async def temp(self, ctx):
         l = self.temp_playlist
         if not self.temp_playlist:
@@ -331,7 +331,7 @@ class Music:
         Playlist.add_element_to_index(name, self.temp_playlist)
         await ctx.send(f'Creada la playlist {name}')
 
-    @commands.group(invoke_without_command=True)
+    @group(invoke_without_command=True)
     async def playlist(self, ctx):
         """
         Shows playlist information:
@@ -369,7 +369,7 @@ class Music:
         Playlist.add_element_to_index(index, url)
         return await ctx.send(f'Se ha añadido la canción **{url}** a la playlist **{index}**')
 
-    @commands.has_role('NoHeaven')
+    @has_role('NoHeaven')
     @playlist.command(name='dels')
     async def __del(self, ctx, index, *, url):
         try:
@@ -377,7 +377,7 @@ class Music:
         except ValueError:
             return await ctx.send('Esta canción no esta en la playlist')
 
-    @commands.has_role('NoHeaven')
+    @has_role('NoHeaven')
     @playlist.command(name='del')
     async def _del(self, ctx, *, index):
         if index not in Playlist.playlist_index():

@@ -16,8 +16,9 @@ class OnMemberActions:
         role = get(member.guild.roles, name='Friends')
         await member.add_roles(role)
         await channel.purge(limit=2)
+        name = f'{member.display_name[:8]}.' if len(member.display_name) >= 9 else member.display_name
         await channel.send(f'Bienvenido {member.mention} a {member.guild.name} ',
-                           file=File(welcome_img(member.display_name), 'welcome.png'))
+                           file=File(welcome_img(name), 'welcome.png'))
 
 
 def setup(bot):

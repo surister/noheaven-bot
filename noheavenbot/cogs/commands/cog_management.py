@@ -1,4 +1,4 @@
-from discord.ext import commands
+from discord.ext.commands import command
 from noheavenbot.utils.cogs_manager import load_cogs, unload_cogs
 
 
@@ -7,7 +7,7 @@ class CogManagement:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(pass_context=True)
+    @command(pass_context=True)
     async def reload(self, ctx):
 
         unload_cogs(self.bot)

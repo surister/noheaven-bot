@@ -13,6 +13,7 @@ class OnMessage:
             x = json.load(f)
         if message.author.id in x['users']:
             await message.delete()
+            await message.author.send('Estas muteado.')
 
 
 def setup(bot):

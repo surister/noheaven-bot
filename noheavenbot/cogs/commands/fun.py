@@ -1,7 +1,7 @@
 import json
 import random
 
-from discord.ext import commands
+from discord.ext.commands import command, group
 from noheavenbot.utils.constants import Path
 
 
@@ -10,7 +10,7 @@ class Garch:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(invoke_without_command=True)
+    @group(invoke_without_command=True)
     async def garch(self, ctx):
         with open(f'{Path.UTILS}/garch.json', 'r') as gr:
             x = json.load(gr)
@@ -52,7 +52,7 @@ class Text:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @command()
     async def text(self, ctx, *, message):
         b = message.lower().replace("$text", "")
         a = b.split()

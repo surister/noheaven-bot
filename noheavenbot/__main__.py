@@ -15,22 +15,10 @@ except KeyError:
     debug_mode = False
 
 
-class bot(Bot):
-    # I know, camel case.
+class CustomBot(Bot):
     def __init__(self, prefix, status_name):
 
-        super().__init__(
-            command_prefix=when_mentioned_or(prefix),
-            activity=Game(name=status_name))
-        self.bg_task = self.loop.create_task(self.background_task())
-
-    async def background_task(self):
-        await self.wait_until_ready()
-
-        member = self.get_guild(431125968455860224).get_member(150726664760983552)
-        if member.nick != 'kowalski':
-            await member.edit(nick='kowalski')
-        await sleep(600)
+        super().__init__(command_prefix=when_mentioned_or(prefix), activity=Game(name=status_name))
 
     @property
     def bot_log(self):
@@ -42,7 +30,7 @@ class bot(Bot):
         return Disconnecting
 
 
-_bot = bot('!' if not debug_mode else '%', '!help -- para ayuda')
+_bot = CustomBot('!' if not debug_mode else '%', '!help -- para ayuda')
 _bot.remove_command('help')
 
 if __name__ == '__main__':

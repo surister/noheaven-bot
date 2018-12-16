@@ -7,7 +7,7 @@ from typing import List
 from bs4 import BeautifulSoup
 
 from discord import File
-from discord.ext import commands
+from discord.ext.commands import cooldown, check, group
 
 from requests import get
 
@@ -41,9 +41,9 @@ class Fun:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.check(is_nsfw)
-    @commands.group(invoke_without_command=True, aliases=['p'])
-    @commands.cooldown(2, 5)
+    @check(is_nsfw)
+    @group(invoke_without_command=True, aliases=['p'])
+    @cooldown(2, 5)
     async def porn(self, ctx, arg):
             src = 'data-src'
             link = f'http://www.sex.com/pics/{arg.lower()}/'
@@ -69,9 +69,9 @@ class Fun:
 
     # lol command is very similar to porn one, only changes the way the html is being parsed, the good way would be
     # to make it work regardless of the web page html organization (kinda difficult) but i'm lazy, feel free to mr/pr
-    @commands.check(is_nsfw)
-    @commands.group(invoke_without_command=True, aliases=['lol', 'l'])
-    @commands.cooldown(2, 5)
+    @check(is_nsfw)
+    @group(invoke_without_command=True, aliases=['lol', 'l'])
+    @cooldown(2, 5)
     async def _lol(self, ctx, arg):
         src = 'href'
 
@@ -114,9 +114,9 @@ class Fun:
                     data = io.BytesIO(await resp.read())
                     await ctx.channel.send(file=File(data, 'cool_image.png'))
 
-    @commands.check(is_nsfw)
-    @commands.group(invoke_without_command=True, aliases=['g'])
-    @commands.cooldown(2, 5)
+    @check(is_nsfw)
+    @group(invoke_without_command=True, aliases=['g'])
+    @cooldown(2, 5)
     async def gif(self, ctx, arg):
 
             if arg.lower() not in Fields.nsfw_categories:
@@ -139,9 +139,8 @@ class Fun:
     async def nsfw_list(ctx):
 
         if str(ctx.command.parent) in ('porn', 'gif'):
-            await ctx.channel.send("** - **".join(Fields.nsfw_categories))
-        else:
-            await ctx.channel.send("** - **".join(Fields.nsfw_lol))
+            return await ctx.channel.send("** - **".join(Fields.nsfw_categories))
+        await ctx.channel.send("** - **".join(Fields.nsfw_lol))
 
     @gif.command(name='list')
     async def _list(self, ctx):
