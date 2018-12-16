@@ -123,4 +123,4 @@ Pipfile/
 *.json
 noheaven/utils/garch.json
 home/surister/noheavenbot/utils/garch.json
-/noheavenbot/cogs/commands/database_funcs.py
+
