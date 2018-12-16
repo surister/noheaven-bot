@@ -113,6 +113,8 @@ dmypy.json
 noheavenbot/utils/login.py
 login.py
 
+/logger
+
 *.lock
 Pipfile
 
