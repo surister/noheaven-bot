@@ -1,16 +1,14 @@
 from os import environ
+from noheavenbot import Vars
+from asyncpg import create_pool
+
 
 class DatabaseConnection:
-    tables = ('users',)
-    
+
     @classmethod
-    def connect(table: str):
-        if table not in DatabaseConnection.tables:
-            return
-        
-        credentials = {'users': 'root', 'password': environ['dbpasswd'], 'database': 'noheaven', 'host': '127.0.0.1'}
-    
-                                          
+    async def connect(cls):
 
-
-
+        credentials = {'users': 'root', 'password': environ['dbpasswd'], 'database': Vars.database, 'host': '127.0.0.1'}
+        db = await create_pool(**credentials)
+        print(dir(db))
+        return db
