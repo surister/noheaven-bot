@@ -1,4 +1,5 @@
 from discord.ext.commands import command
+
 """
     async def background_task(self):
         await self.wait_until_ready()
@@ -16,6 +17,9 @@ class Name:
         self.bot = bot
 
 
-
 class Role:
+    pass
+
+
+def setup(bot):
     pass

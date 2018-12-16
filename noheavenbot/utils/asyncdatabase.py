@@ -2,8 +2,6 @@ import asyncio
 
 import asyncpg
 
-from discord.ext.commands import command
-
 
 class DatabaseMethods:
     @classmethod
@@ -12,9 +10,12 @@ class DatabaseMethods:
 
         await conn.execute('''
             CREATE TABLE users(
-                id serial PRIMARY KEY,
-                name varchar(80),
+                id BIGINT PRIMARY KEY,
+                name varchar(32),
                 date date,
                 admin boolean
             )
         ''')
+
+
+asyncio.get_event_loop().run_until_complete(DatabaseMethods.create_main_db())
