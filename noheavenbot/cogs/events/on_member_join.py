@@ -20,5 +20,6 @@ class OnMemberActions:
         await channel.send(f'Bienvenido {member.mention} a {member.guild.name} ',
                            file=File(welcome_img(name), 'welcome.png'))
 
+
 def setup(bot):
     bot.add_cog(OnMemberActions(bot))
