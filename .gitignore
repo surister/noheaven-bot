@@ -111,7 +111,7 @@ dmypy.json
 
 # bot-nh
 noheavenbot/utils/login.py
-
+login.py
 
 *.lock
 Pipfile
