@@ -1,7 +1,5 @@
-import asyncio
 from noheavenbot.utils import DatabaseConnection
-import asyncpg
-
+from noheavenbot.utils.json_utils import Json
 from discord.ext.commands import command
 
 
@@ -11,16 +9,15 @@ class DatabaseInfoInjector:
 
     @command(name='use')
     async def get_users(self, ctx):
-        db = await DatabaseConnection.connect()
-        print(db)
-        # for member in ctx.guild.members:
-            # await db.execute('''
-            # INSERT INTO users (id, name, date, admin) VALUES ($1, $2, $3, $4)
-            # ''', member.id, member.display_name, member.joined_at, False)
-        await db.close()
+        conn = await DatabaseConnection.connect()
+        for i, name in enumerate(Json.get('/home/surister/noheavenbot/noheavenbot/utils/garch.json')['name']):
+            await conn.execute('''
+            INSERT INTO garch (name, index) VALUES ($1, $2)
+            ''', name, i)
+        await conn.close()
 
 
 def setup(bot):
     bot.add_cog(DatabaseInfoInjector(bot))
 
-
+# DO ABOVE

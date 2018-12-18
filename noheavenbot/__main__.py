@@ -6,7 +6,7 @@ from noheavenbot.logger.bot_log import Log, Disconnecting
 from noheavenbot.utils.cogs_manager import load_cogs
 from noheavenbot import Vars
 
-import os; print(os.environ)
+
 class CustomBot(Bot):
     def __init__(self, prefix, status_name):
 
