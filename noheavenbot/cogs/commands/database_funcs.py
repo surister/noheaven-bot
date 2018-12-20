@@ -1,5 +1,5 @@
-from noheavenbot.utils import DatabaseConnection, GarchTable
-from discord.ext.commands import command, group
+from noheavenbot.utils import GarchTable
+from discord.ext.commands import group
 
 
 class DatabaseInfoInjector:
