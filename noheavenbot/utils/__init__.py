@@ -1,4 +1,3 @@
 from noheavenbot.utils.database_connection import DatabaseConnection
-from noheavenbot.utils.database_connection import GarchTable
-
+from noheavenbot.utils.tables import GarchTable
 __all__ = ['DatabaseConnection', 'GarchTable']

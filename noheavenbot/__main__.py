@@ -1,10 +1,9 @@
 from discord import Game
 from discord.ext.commands import Bot, when_mentioned_or
 
-
 from noheavenbot.logger.bot_log import Log, Disconnecting
 from noheavenbot.utils.cogs_manager import load_cogs
-from noheavenbot import Vars
+from noheavenbot.utils.constants import Vars
 
 
 class CustomBot(Bot):
@@ -22,18 +21,16 @@ class CustomBot(Bot):
         return Disconnecting
 
 
-_bot = CustomBot(Vars.prefix, '!help -- para ayuda')
-_bot.remove_command('help')
+noheaven_bot = CustomBot(Vars.PREFIX, '!help -- para ayuda')
+noheaven_bot.remove_command('help')
 
 if __name__ == '__main__':
+    load_cogs(noheaven_bot)
+    noheaven_bot.run(Vars.TOKEN)
 
-    load_cogs(_bot)
-
-    _bot.run(Vars.token)
-
-    if _bot.is_closed():
+    if noheaven_bot.is_closed():
         try:
-            _bot.bot_disconnect.disconnect()
+            noheaven_bot.bot_disconnect.disconnect()
         except Exception as e:
             print(e)
         finally:

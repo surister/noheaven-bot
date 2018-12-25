@@ -1,3 +1,4 @@
+import os
 from typing import NamedTuple
 from pathlib import PurePath
 
@@ -5,6 +6,7 @@ from pathlib import PurePath
 class Fields(NamedTuple):
 
     help_fields = (
+
                     ('__**Admins**__', 'Commands only avaliable for admins'),
                     ('!reset', 'resets the bots, only admins can do that'),
                     ('!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'),
@@ -29,7 +31,9 @@ class Fields(NamedTuple):
                     ('!text <texto - >', 'Transforms <texto> in emoji text'),
                     ('!beaten <destructor> <vencido1> <vencido2>', 'Shows your enemies who the boss is')
                     )
+
     music_fields = (
+
         ('!music', 'muestra este mensaje'),
         ('!play <canción>', 'Toca la <canción>'),
         ('!skip', 'Salta a la siguiente canción, si no hay ninguna espera 60 segundos'),
@@ -48,10 +52,12 @@ class Fields(NamedTuple):
         ('!temp', 'Te muestra la lista temporal actual, esta se crea con las canciones que tocas con !play'),
         ('!temp copy <nombre>', 'Crea una playlist <nombre> con las canciones de la playlsit temporal'),
         ('!temp d <índice>', 'Borra el la canción que esta en el <indice> Nota: Los indices empiezan en 0'),
-        ('**Información adicional**', 'El bot tiene un timeout de 60 segundos, si en 60 segundos no toca musica, se sale del canal'),
+        ('**Información adicional**', 'El bot tiene un timeout de 60 segundos, si en 60 segundos no toca musica,'
+                                      'se sale del canal'),
     )
 
     nsfw_categories = [
+
         'amateur', 'anal', 'asian', 'ass', 'babes', 'bbw', 'bdsm', 'big', 'tits', 'blonde', 'blowjob',
         'brunette', 'celebrity', 'college', 'creampie', 'cumshots', 'double', 'penetration', 'ebony',
         'emo', 'female-ejaculation', 'fisting', 'footjob', 'gangbang', 'gay', 'girlfriend', 'group',
@@ -95,5 +101,13 @@ class Path(NamedTuple):
     EVENTS = f'{COGS}events/'
 
 
+class Vars(NamedTuple):
+    try:
+        debug_mode = os.environ['DEBUG_MODE']
+    except KeyError:
+        debug_mode = False
 
-
+    PREFIX = '!' if not debug_mode else '%'
+    TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
+    DATABASE = 'surister' if debug_mode else 'noheaven'
+    DBPASS = os.environ['dbpasswd']

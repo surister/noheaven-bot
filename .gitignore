@@ -120,7 +120,3 @@ Pipfile
 
 Pipfile/
 /noheavenbot/logger
-*.json
-noheaven/utils/garch.json
-home/surister/noheavenbot/utils/garch.json
-
