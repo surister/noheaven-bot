@@ -4,7 +4,6 @@ from noheavenbot.utils import DatabaseConnection
 
 
 class Table:
-
     tables = ['garch']
     table = None
 
