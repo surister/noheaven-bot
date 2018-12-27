@@ -7,8 +7,9 @@ class Table:
     tables = ['garch']
     table = None
 
-    if table is None or table not in tables:
-        raise Exception('Check tables')
+    if table is not None:
+        if table not in tables:
+            raise Exception('Check tables')
 
     @classmethod
     async def get_max_index(cls):
