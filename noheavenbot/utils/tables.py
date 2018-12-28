@@ -4,7 +4,7 @@ from noheavenbot.utils import DatabaseConnection
 
 
 class Garch:
-
+    # https://stackoverflow.com/questions/38322870/select-table-and-column-dynamically-based-on-other-table-rows
     @classmethod
     async def get_max_index(cls):
         conn = await DatabaseConnection.connect()
