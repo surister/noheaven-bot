@@ -17,7 +17,6 @@ class CustomBot(Bot):
 
     @property
     def bot_disconnect(self):
-        self.http.close()
         return Disconnecting
 
 

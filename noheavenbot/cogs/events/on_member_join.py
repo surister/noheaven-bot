@@ -10,7 +10,6 @@ class OnMemberActions:
         self.bot = bot
 
     async def on_member_join(self, member):
-
         channel = self.bot.get_channel(452530575618867200)
 
         role = get(member.guild.roles, name='Friends')

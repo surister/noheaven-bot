@@ -24,7 +24,7 @@ ytdl_format_options = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'auto',
-    'source_address': '0.0.0.0' # bind to ipv4 since ipv6 addresses cause issues sometimes
+    'source_address': '0.0.0.0'  # bind to ipv4 since ipv6 addresses cause issues sometimes
 }
 
 ffmpeg_options = {
@@ -256,7 +256,6 @@ class Music:
         self.update_basic_ctx_or_voice(ctx, state)
         if song is not None:
             if ctx.voice_client.is_playing():
-                print('nani')
                 await state.notify_queue(song)
             await state.queue.put(song)
             self.temp_playlist.append(song)
