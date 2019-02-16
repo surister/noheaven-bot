@@ -1,6 +1,8 @@
 import os
 from typing import NamedTuple
+import pathlib
 from pathlib import PurePath
+from dotenv import load_dotenv
 
 
 class Fields(NamedTuple):
@@ -90,8 +92,9 @@ class Fields(NamedTuple):
 
 
 class Path(NamedTuple):
-
+    ENV = f'{pathlib.PosixPath(__file__).home()}/noheavenbot/.env'
     _NOHEAVEN_BASE = str(PurePath(__file__).parent)
+
     _NOHEAVEN = _NOHEAVEN_BASE.replace('utils', '')
 
     UTILS = _NOHEAVEN_BASE
@@ -102,11 +105,17 @@ class Path(NamedTuple):
 
 
 class Vars(NamedTuple):
+
+    # This means that .env variables are not set.
+    if 'dummykey' not in os.environ:
+        from dotenv import load_dotenv
+        load_dotenv()
+        print(Path.ENV)
     try:
         debug_mode = os.environ['DEBUG_MODE']
     except KeyError:
         debug_mode = False
-
+    print(os.environ)
     PREFIX = '!' if not debug_mode else '%'
     TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
     DATABASE = 'surister' if debug_mode else 'noheaven'
