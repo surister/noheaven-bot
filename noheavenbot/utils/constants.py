@@ -2,7 +2,6 @@ import os
 from typing import NamedTuple
 import pathlib
 from pathlib import PurePath
-from dotenv import load_dotenv
 
 
 class Fields(NamedTuple):
