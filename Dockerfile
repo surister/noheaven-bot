@@ -23,7 +23,6 @@ RUN apk add --no-cache --virtual .build-deps \
             tcl-dev \
             harfbuzz-dev \
             fribidi-dev && \
-            apk del .build-deps && \
             pip install -r requirements.txt && \
             pip install -U git+https://github.com/Rapptz/discord.py@rewrite#egg=discord.py[voice] && \
             apk del .build-deps && \
