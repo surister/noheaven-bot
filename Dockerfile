@@ -4,13 +4,13 @@ RUN mkdir app
 COPY . /app
 WORKDIR app
 
-RUN apk add gcc \
+RUN apk add --no-cache --virtual .build-deps \
+            gcc \
             linux-headers \
             musl-dev \
             libffi-dev \
             git \
             #Pynacl
-            --virtual .pynacl_deps \
             build-base \
             # Pillow
             jpeg-dev \
@@ -23,10 +23,11 @@ RUN apk add gcc \
             tcl-dev \
             harfbuzz-dev \
             fribidi-dev && \
-            rm -rf /var/cache/apk/* && \
+            apk del .build-deps && \
             pip install -r requirements.txt && \
-            pip install -U git+https://github.com/Rapptz/discord.py@rewrite#egg=discord.py[voice]
-
+            pip install -U git+https://github.com/Rapptz/discord.py@rewrite#egg=discord.py[voice] && \
+            apk del .build-deps && \
+            rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["python"]
 CMD ["-m", "noheavenbot"]
