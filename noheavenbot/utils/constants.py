@@ -108,14 +108,15 @@ class Vars(NamedTuple):
 
     # This means that .env variables are not set.
     if 'dummykey' not in os.environ:
-        from dotenv import load_dotenv
-        load_dotenv()
-        print(Path.ENV)
+        try:
+            from dotenv import load_dotenv
+            load_dotenv()
+        except ModuleNotFoundError:
+            pass
     try:
         debug_mode = os.environ['DEBUG_MODE']
     except KeyError:
         debug_mode = False
-    print(os.environ)
     PREFIX = '!' if not debug_mode else '%'
     TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
     DATABASE = 'surister' if debug_mode else 'noheaven'
