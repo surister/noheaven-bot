@@ -119,5 +119,5 @@ class Vars(NamedTuple):
     PREFIX = '!' if not debug_mode else '%'
     TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
     DATABASE = 'surister' if debug_mode else 'noheaven'
-    DBPASS = os.environ['dbpasswd']
-    PORT = os.environ['postgresqlport']
+   # DBPASS = os.environ['dbpasswd']
+   # PORT = os.environ['postgresqlport']
