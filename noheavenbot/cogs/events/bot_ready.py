@@ -7,6 +7,7 @@ class Ready:
         self.bot = bot
 
     async def on_ready(self):
+
         self.bot.bot_log.write('Bot is connected')
         s = '\n----------------------------\n'
         fmt = "Conectado como: {0} \n Id: {1} \n {2}".format(

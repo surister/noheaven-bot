@@ -20,5 +20,5 @@ class OnMemberActions:
                            file=File(welcome_img(name), 'welcome.png'))
 
 
-def setup(bot):
-    bot.add_cog(OnMemberActions(bot))
+# def setup(bot):
+#     bot.add_cog(OnMemberActions(bot))

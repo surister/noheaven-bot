@@ -28,7 +28,7 @@ def beaten_img(w, l1, l2):
     return a.getvalue()
 
 
-class Patch:
+class Patch(Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -47,5 +47,5 @@ class Patch:
         await ctx.send(file=discord.File(rb_file, 'beaten.png'))
 
 
-def setup(bot):
-    bot.add_cog(Patch(bot))
+# def setup(bot):
+#     bot.add_cog(Patch(bot))

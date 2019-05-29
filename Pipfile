@@ -15,6 +15,7 @@ numpy = "*"
 asyncpg = "*"
 dotenv = "*"
 python-dotenv = "*"
+pil = "*"
 
 [dev-packages]
 
