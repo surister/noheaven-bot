@@ -1,8 +1,9 @@
-from discord.ext.commands import command
+from discord.ext.commands import command, Cog
+
 from noheavenbot.utils.cogs_manager import load_cogs, unload_cogs
 
 
-class CogManagement:
+class CogManagement(Cog):
 
     def __init__(self, bot):
         self.bot = bot

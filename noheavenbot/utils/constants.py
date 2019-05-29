@@ -106,12 +106,12 @@ class Path(NamedTuple):
 class Vars(NamedTuple):
 
     # This means that .env variables are not set.
-    if 'dummykey' not in os.environ:
-        try:
-            from dotenv import load_dotenv
-            load_dotenv()
-        except ModuleNotFoundError:
-            pass
+
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ModuleNotFoundError:
+        print('dotenv not installed')
     try:
         debug_mode = os.environ['DEBUG_MODE']
     except KeyError:

@@ -1,5 +1,5 @@
 import discord
-from discord.ext.commands import command
+from discord.ext.commands import command, Cog
 from PIL import Image, ImageFont, ImageDraw
 import io
 
@@ -28,7 +28,7 @@ def beaten_img(w, l1, l2):
     return a.getvalue()
 
 
-class Patch:
+class Patch(Cog):
 
     def __init__(self, bot):
         self.bot = bot
