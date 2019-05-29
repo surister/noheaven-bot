@@ -1,5 +1,5 @@
 import discord
-from discord.ext.commands import command
+from discord.ext.commands import command, Cog
 from PIL import Image, ImageFont, ImageDraw
 import io
 
@@ -47,5 +47,5 @@ class Patch(Cog):
         await ctx.send(file=discord.File(rb_file, 'beaten.png'))
 
 
-# def setup(bot):
-#     bot.add_cog(Patch(bot))
+def setup(bot):
+    bot.add_cog(Patch(bot))

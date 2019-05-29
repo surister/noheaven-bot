@@ -1,11 +1,14 @@
 from time import strftime
+from discord.ext.commands import Cog
 
 
-class Ready:
+class Ready(Cog):
 
     def __init__(self, bot):
+        super().__init__()
         self.bot = bot
 
+    @Cog.listener()
     async def on_ready(self):
 
         self.bot.bot_log.write('Bot is connected')

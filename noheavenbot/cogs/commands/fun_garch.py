@@ -1,8 +1,8 @@
 from noheavenbot.utils import tables
-from discord.ext.commands import group
+from discord.ext.commands import group, Cog
 
 
-class DatabaseInfoInjector:
+class DatabaseInfoInjector(Cog):
     def __init__(self, bot):
         self.bot = bot
 

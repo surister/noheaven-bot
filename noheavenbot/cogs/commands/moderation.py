@@ -3,7 +3,7 @@ import json
 from sys import exit
 
 from discord import Embed, Member
-from discord.ext.commands import command, check, has_role
+from discord.ext.commands import command, check, has_role, Cog
 
 from noheavenbot.utils.constants import Fields, Path
 from noheavenbot.utils.constructors import EmbedConstructor
@@ -18,22 +18,22 @@ def is_allowed(ctx):
     # sur, alpha, drew
 
 
-class Moderation:
+class Moderation(Cog):
 
     def __init__(self, bot):
         self.bot = bot
 
-    @check(is_allowed)
-    @command(name='reset')
-    async def bot_exit(self, ctx):
-
-        await ctx.send('Reiniciando..')
-        try:
-            self.bot.bot_disconnect.disconnect()
-        except Exception as e:
-            print(e)
-        finally:
-            exit(0)
+    # @check(is_allowed)
+    # @command(name='reset')
+    # async def bot_exit(self, ctx):
+    #
+    #     await ctx.send('Reiniciando..')
+    #     try:
+    #         self.bot.bot_disconnect.disconnect()
+    #     except Exception as e:
+    #         print(e)
+    #     finally:
+    #         exit(0)
 
     @command(name='help')
     async def command_for_help(self, ctx):
@@ -51,7 +51,7 @@ class Moderation:
         help_embed = EmbedConstructor('Music commands', Fields.music_fields).construct()
         await ctx.send(embed=help_embed)
 
-    @has_role('Server Adminn')
+    @has_role('Server Admin')
     @command()
     async def perms(self, ctx, member: Member = None):
 

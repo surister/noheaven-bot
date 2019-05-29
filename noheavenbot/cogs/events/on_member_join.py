@@ -1,14 +1,17 @@
 from discord import File
 from discord.utils import get
+from discord.ext.commands import Cog
 
 from noheavenbot.assets.don_patch import welcome_img
 
 
-class OnMemberActions:
+class OnMemberActions(Cog):
 
     def __init__(self, bot):
+        super().__init__()
         self.bot = bot
 
+    @Cog.listener()
     async def on_member_join(self, member):
         channel = self.bot.get_channel(452530575618867200)
 
@@ -20,5 +23,5 @@ class OnMemberActions:
                            file=File(welcome_img(name), 'welcome.png'))
 
 
-# def setup(bot):
-#     bot.add_cog(OnMemberActions(bot))
+def setup(bot):
+    bot.add_cog(OnMemberActions(bot))

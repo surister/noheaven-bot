@@ -7,7 +7,7 @@ from typing import List
 from bs4 import BeautifulSoup
 
 from discord import File
-from discord.ext.commands import cooldown, check, group
+from discord.ext.commands import cooldown, check, group, Cog
 
 from requests import get
 
@@ -33,7 +33,7 @@ def is_nsfw(ctx):
     return ctx.channel.is_nsfw()
 
 
-class Fun:
+class Fun(Cog):
     """
     Yes I do know this is al terribly hardcoded but hey, it works, if it pains you watching this
     ->MR/PR are welcome.

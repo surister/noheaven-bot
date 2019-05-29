@@ -4,7 +4,7 @@ from typing import Union
 import asyncio
 import discord
 import youtube_dl
-from discord.ext.commands import command, group, has_role
+from discord.ext.commands import command, group, has_role, Cog
 
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.constants import Path
@@ -197,7 +197,7 @@ class Voice:
             await self.flow_control.wait()
 
 
-class Music:
+class Music(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.temp_playlist = []
