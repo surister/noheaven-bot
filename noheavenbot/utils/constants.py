@@ -105,20 +105,19 @@ class Path(NamedTuple):
 
 class Vars(NamedTuple):
 
-    # This means that .env variables are not set.
-
     try:
         from dotenv import load_dotenv
         load_dotenv()
     except ModuleNotFoundError:
-        print('dotenv not installed')
+        print('dotenv package not installed')
     try:
-        debug_mode = os.environ['DEBUG_MODE']
+        debug_mode = True if os.environ['DEBUG_MODE'] == 'True' else False
     except KeyError:
+        print('.env variables are not set')
         debug_mode = False
 
     PREFIX = '%' if debug_mode else '!'
-    TOKEN = os.environ['sur'] if debug_mode == 'True' else os.environ['nhbot']
+    TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
     DATABASE = 'surister' if debug_mode else 'noheaven'
     # DBPASS = os.environ['dbpasswd']
     # PORT = os.environ['postgresqlport']
