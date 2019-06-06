@@ -116,8 +116,9 @@ class Vars(NamedTuple):
         debug_mode = os.environ['DEBUG_MODE']
     except KeyError:
         debug_mode = False
-    PREFIX = '!' if not debug_mode else '%'
-    TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
+
+    PREFIX = '%' if debug_mode else '!'
+    TOKEN = os.environ['sur'] if debug_mode == 'True' else os.environ['nhbot']
     DATABASE = 'surister' if debug_mode else 'noheaven'
-   # DBPASS = os.environ['dbpasswd']
-   # PORT = os.environ['postgresqlport']
+    # DBPASS = os.environ['dbpasswd']
+    # PORT = os.environ['postgresqlport']

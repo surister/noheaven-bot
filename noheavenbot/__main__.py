@@ -25,6 +25,7 @@ noheaven_bot.remove_command('help')
 
 if __name__ == '__main__':
     load_cogs(noheaven_bot)
+    print(Vars.TOKEN)
     noheaven_bot.run(Vars.TOKEN)
 
     if noheaven_bot.is_closed():
