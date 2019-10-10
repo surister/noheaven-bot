@@ -1,4 +1,6 @@
 import os
+
+import logging
 from typing import NamedTuple
 import pathlib
 from pathlib import PurePath
@@ -91,33 +93,43 @@ class Fields(NamedTuple):
 
 
 class Path(NamedTuple):
-    ENV = f'{pathlib.PosixPath(__file__).home()}/noheavenbot/.env'
-    _NOHEAVEN_BASE = str(PurePath(__file__).parent)
+    # TODO check pathin in linux
+    DOTENV = f'{pathlib.PurePath(__file__).parent}/.env'
+    _UTILS_BASE_FOLDER = str(PurePath(__file__).parent)
 
-    _NOHEAVEN = _NOHEAVEN_BASE.replace('utils', '')
+    _ROOT_FOLDER = _UTILS_BASE_FOLDER.replace('utils', '')
 
-    UTILS = _NOHEAVEN_BASE
-    COGS = f'{_NOHEAVEN}cogs/'
+    UTILS = _UTILS_BASE_FOLDER
+    COGS = f'{_ROOT_FOLDER}cogs/'
 
     COMMANDS = f'{COGS}commands/'
     EVENTS = f'{COGS}events/'
 
 
-class Vars(NamedTuple):
+class EnvVariables(NamedTuple):
 
     try:
         from dotenv import load_dotenv
         load_dotenv()
     except ModuleNotFoundError:
-        print('dotenv package not installed')
-    try:
-        debug_mode = True if os.environ['DEBUG_MODE'] == 'True' else False
-    except KeyError:
-        print('.env variables are not set')
-        debug_mode = False
+        logging.warning('dotenv not installed')
+    # try:
+    #     debug_mode = True if os.environ['DEBUG_MODE'] == 'True' else False
+    # except KeyError:
+    #     logging.warning('are env variables set?')
+    #     debug_mode = False
 
-    PREFIX = '%' if debug_mode else '!'
-    TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
-    DATABASE = 'surister' if debug_mode else 'noheaven'
+    @classmethod
+    def get(cls, name: str) -> str:
+        var = ''
+        try:
+            var = os.environ[name]
+        except KeyError:
+            logging.warning(f' Are .env variables set? could not get "{name}" variable')
+        return var
+
+    # PREFIX = '%' if debug_mode else '!'
+    # TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
+    # DATABASE = 'surister' if debug_mode else 'noheaven'
     # DBPASS = os.environ['dbpasswd']
     # PORT = os.environ['postgresqlport']
