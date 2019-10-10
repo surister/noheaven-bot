@@ -1,6 +1,10 @@
-from asyncpg import create_pool
+import logging
 
-from noheavenbot.utils.constants import Vars
+try:
+    from asyncpg import create_pool
+except ModuleNotFoundError:
+    logging.warning('Database not set up, install asyncpg')
+from noheavenbot.utils.constants import EnvVariables
 
 
 class DatabaseConnection:
@@ -8,7 +12,7 @@ class DatabaseConnection:
     @classmethod
     async def connect(cls):
         credentials = \
-            {'user': 'root', 'password': Vars.DBPASS, 'database': 'noheaven', 'host': 'localhost', 'port': Vars.PORT}
+            {'user': 'root', 'password': EnvVariables.DBPASS, 'database': 'noheaven', 'host': 'localhost', 'port': EnvVariables.PORT}
 
         conn = await create_pool(**credentials)
         return conn

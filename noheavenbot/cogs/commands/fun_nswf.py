@@ -4,12 +4,18 @@ import random
 
 from typing import List
 
-from bs4 import BeautifulSoup
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    import logging; logging.warning('Beatiful soup not installed')
 
 from discord import File
 from discord.ext.commands import cooldown, check, group, Cog
 
-from requests import get
+try:
+    from requests import get
+except ImportError:
+    import logging; logging.warning('requests not installed')
 
 from noheavenbot.utils.constants import Fields
 
