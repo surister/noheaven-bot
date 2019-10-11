@@ -79,10 +79,9 @@ class Moderation(Cog):
 
         roles = [x.name for x in user.roles if x.name != "@everyone"]
 
-        joined_at = user.joined_at
         since_created = (ctx.message.created_at - user.created_at).days
-        since_joined = (ctx.message.created_at - joined_at).days
-        user_joined = joined_at.strftime("%d %b %Y %H:%M")
+        since_joined = (ctx.message.created_at - user.joined_at).days
+        user_joined = user.joined_at.strftime("%d %b %Y %H:%M")
         user_created = user.created_at.strftime("%d %b %Y %H:%M")
 
         created_on = "{}\n({} days ago)".format(user_created, since_created)
@@ -123,9 +122,9 @@ class Moderation(Cog):
     @has_role('Server Admin')
     async def delete_messages(self, ctx, number: int):
 
-            print(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
-            mgs = [message async for message in ctx.channel.history(limit=number+1)]
-            await ctx.channel.delete_messages(mgs)
+        print(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
+        mgs = [message async for message in ctx.channel.history(limit=number+1)]
+        await ctx.channel.delete_messages(mgs)
 
     @command()
     async def ping(self, ctx):
