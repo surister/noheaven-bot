@@ -11,8 +11,7 @@ class DatabaseConnection:
 
     @classmethod
     async def connect(cls):
-        credentials = \
-            {'user': 'root', 'password': EnvVariables.DBPASS, 'database': 'noheaven', 'host': 'localhost', 'port': EnvVariables.PORT}
+        credentials = {'user': 'root', 'password': EnvVariables.get('DBPASS'), 'database': 'noheaven',
+                       'host': 'localhost', 'port': EnvVariables.get('PORT')}
 
-        conn = await create_pool(**credentials)
-        return conn
+        return await create_pool(**credentials)

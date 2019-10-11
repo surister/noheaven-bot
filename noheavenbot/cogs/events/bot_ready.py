@@ -11,7 +11,6 @@ class Ready(Cog):
     @Cog.listener()
     async def on_ready(self):
 
-        self.bot.warning('TEST')
         s = '\n----------------------------\n'
         fmt = "Conectado como: {0} \n Id: {1} \n {2}".format(
             self.bot.user.name,
