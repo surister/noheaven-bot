@@ -1,14 +1,13 @@
 import json
 
 from sys import exit
-
-from discord import Embed, Member
+from discord import Embed, Member, File
 from discord.ext.commands import command, check, has_role, Cog
 
 from noheavenbot.utils.constants import Fields, Path
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.validator import has_role as check_roles
-
+from noheavenbot.cogs.commands.don_patch import beaten_img
 
 # TOdo logs aqui en todo
 
@@ -39,6 +38,7 @@ class Moderation(Cog):
     async def command_for_help(self, ctx):
 
         # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
+        # Revisit and rethink whole idea
 
         if check_roles('Server Admin', ctx.author.roles):
             help_embed = EmbedConstructor('Server commands', Fields.help_fields).construct()
@@ -131,16 +131,10 @@ class Moderation(Cog):
         await ctx.send(f'Pong -> {self.bot.latency}')
 
     @command()
-    async def test(self, ctx, member: Member):
-        # await ctx.send(embed=
-        # EmbedConstructor('test', (('test1', 'test2'), ('Empty', 'Hola'), ('HOla', 'Empty'))).construct())
+    async def test(self, ctx, garch: str,  uno: str, dos: str):
+        await ctx.send(f'Bienvenido {ctx.author.name} ', file=File(beaten_img(garch, uno, dos), 'welcome.png'))
 
-        await member.edit(nick='kowalski')
-        print(member.nick)
-        print('alright')
-        print(type(member))
-
-    # Todo use json commands intead of this
+    # Todo use json commands intead of this <- NO!?
     @command(name='mute')
     async def _mute(self, ctx, member: Member):
         with open(f'{Path.UTILS}/muted.json', 'r') as f:

@@ -13,7 +13,8 @@ def check_is_member(to_check: list):
 
 # TODO update this (path)
 
-
+# TODO put this into util
+# TODO Variable namig please, beating_img func
 def beaten_img(w, l1, l2):
     img = Image.open(f"{path}/patch_beaten2.jpg")
     draw = ImageDraw.Draw(img)
@@ -25,8 +26,8 @@ def beaten_img(w, l1, l2):
     draw.text((310, 200), l2, (255, 255, 255), font=font)  # loser 2
     a = io.BytesIO()
     img.save(a, format='PNG')
-
-    return a.getvalue()
+    a.seek(0)
+    return a
 
 
 class Patch(Cog):
