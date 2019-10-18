@@ -57,7 +57,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
 
 class Playlist:
-    FP = f'{Path.COMMANDS}/playlist.json'
+    FP = f'{Path.COMMANDS_FOLDER}/playlist.json'
     NUMBER_OF_PLAYLISTS = len(Json.get(FP))
 
     @classmethod

@@ -2,7 +2,6 @@ import os
 
 import logging
 from typing import NamedTuple
-import pathlib
 from pathlib import PurePath
 
 
@@ -93,17 +92,17 @@ class Fields(NamedTuple):
 
 
 class Path(NamedTuple):
-    # TODO check pathin in linux
-    DOTENV = f'{pathlib.PurePath(__file__).parent}/.env'
-    _UTILS_BASE_FOLDER = str(PurePath(__file__).parent)
+    # TODO check pathing in linux
 
-    _ROOT_FOLDER = _UTILS_BASE_FOLDER.replace('utils', '')
+    UTILS_FOLDER = str(PurePath(__file__).parent)
+    _ROOT_FOLDER = UTILS_FOLDER.replace('utils', '')
 
-    UTILS = _UTILS_BASE_FOLDER
-    COGS = f'{_ROOT_FOLDER}cogs/'
-
-    COMMANDS = f'{COGS}commands/'
-    EVENTS = f'{COGS}events/'
+    COGS_FOLDER = f'{_ROOT_FOLDER}cogs/'
+    DOTENV_FOLDER = UTILS_FOLDER + '/.env'
+    COMMANDS_FOLDER = f'{COGS_FOLDER}commands/'
+    EVENTS_FOLDER = f'{COGS_FOLDER}events/'
+    ASSETS_FOLDER = f'{_ROOT_FOLDER}assets/'
+    IMGS_FOLDER = f'{ASSETS_FOLDER}imgs/'
 
 
 class EnvVariables(NamedTuple):
@@ -121,15 +120,9 @@ class EnvVariables(NamedTuple):
 
     @classmethod
     def get(cls, name: str) -> str:
-        var = ''
+        env_var = ''
         try:
-            var = os.environ[name]
+            env_var = os.environ[name]
         except KeyError:
             logging.warning(f' Are .env variables set? could not get "{name}" variable')
-        return var
-
-    # PREFIX = '%' if debug_mode else '!'
-    # TOKEN = os.environ['sur'] if debug_mode else os.environ['nhbot']
-    # DATABASE = 'surister' if debug_mode else 'noheaven'
-    # DBPASS = os.environ['dbpasswd']
-    # PORT = os.environ['postgresqlport']
+        return env_var

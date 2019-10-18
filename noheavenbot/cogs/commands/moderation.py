@@ -7,7 +7,6 @@ from discord.ext.commands import command, check, has_role, Cog
 from noheavenbot.utils.constants import Fields, Path
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.validator import has_role as check_roles
-from noheavenbot.cogs.commands.don_patch import beaten_img
 
 # TOdo logs aqui en todo
 
@@ -130,9 +129,10 @@ class Moderation(Cog):
     async def ping(self, ctx):
         await ctx.send(f'Pong -> {self.bot.latency}')
 
+    # TODO Make unique test file, not have it on moderation
     @command()
     async def test(self, ctx, garch: str,  uno: str, dos: str):
-        await ctx.send(f'Bienvenido {ctx.author.name} ', file=File(beaten_img(garch, uno, dos), 'welcome.png'))
+        pass
 
     # Todo use json commands intead of this <- NO!?
     @command(name='mute')
