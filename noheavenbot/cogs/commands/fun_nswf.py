@@ -100,7 +100,7 @@ class Fun(Cog):
 
             # This is gotten from requests, yes I do know that it could block but aiohttp loses html code that is
             # critical to get the final image, requests on the other hand doesn't, the http call lasts less than
-            # a second so as long as the original webpage is alright, there will be no blocking. Maybe change to
+            # a second so as long as the original webpage is alright, there should be be no blocking. Maybe change to
             # requests-html since it supports asyncio operations?
             # Todo implemente a timeout so we are always 100% sure
             images = [link.get(src) for link in soup.find_all('a') if link.get(src)]  #
@@ -125,20 +125,20 @@ class Fun(Cog):
     @cooldown(2, 5)
     async def gif(self, ctx, arg):
 
-            if arg.lower() not in Fields.nsfw_categories:
-                return await ctx.send('Wrong category')
+        if arg.lower() not in Fields.nsfw_categories:
+            return await ctx.send('Wrong category')
 
-            async with ctx.channel.typing():
-                link = f'http://www.sex.com/gifs/{arg.lower()}/'
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(link) as resp:
-                        full_html = await resp.text()
-                soup = BeautifulSoup(full_html, 'html.parser')
+        async with ctx.channel.typing():
+            link = f'http://www.sex.com/gifs/{arg.lower()}/'
+            async with aiohttp.ClientSession() as session:
+                async with session.get(link) as resp:
+                    full_html = await resp.text()
+            soup = BeautifulSoup(full_html, 'html.parser')
 
-                images = [link.get('data-src') for link in soup.find_all('img')
-                          if link.get('data-src')]
+            images = [link.get('data-src') for link in soup.find_all('img')
+                        if link.get('data-src')]
 
-                await ctx.channel.send(random.choice(images))
+            await ctx.channel.send(random.choice(images))
 
     #  There are ways to put all of this together but I'm lazy lazy.
     @staticmethod

@@ -14,10 +14,10 @@ class CogList:
     @classmethod
     def get(cls) -> list:
         cog_list = []
-        for element in os.listdir(Path.COGS):
+        for element in os.listdir(Path.COGS_FOLDER):
             if element not in CogList.blacklist:
-                if os.path.isdir(f'{Path.COGS}/{element}'):
-                    for cog in os.listdir(f'{Path.COGS}/{element}'):
+                if os.path.isdir(f'{Path.COGS_FOLDER}/{element}'):
+                    for cog in os.listdir(f'{Path.COGS_FOLDER}/{element}'):
                         if cog not in CogList.blacklist:
                             cog_list.append(f'noheavenbot.cogs.{element}.{cog}'.replace('.py', ''))
                 else:

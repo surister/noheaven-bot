@@ -2,7 +2,7 @@ from discord import File
 from discord.utils import get
 from discord.ext.commands import Cog
 
-from noheavenbot.assets.don_patch import welcome_img
+from noheavenbot.utils.image_manipulation import welcome_img
 
 
 class OnMemberActions(Cog):
