@@ -8,7 +8,7 @@ class DatabaseInfoInjector(Cog):
 
     @group(invoke_without_command=True)
     async def garch(self, ctx):
-        await ctx.send(await tables.Garch.fetch_name())
+        await ctx.send(f'{await tables.Garch.fetch_name()}')
 
     @garch.command()
     async def save(self, ctx, *, name):

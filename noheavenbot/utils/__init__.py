@@ -1,2 +1,2 @@
-from noheavenbot.utils.database_connection import DatabaseConnection
-__all__ = ['DatabaseConnection']
+from noheavenbot.utils.database_config import Database
+__all__ = ['Database']

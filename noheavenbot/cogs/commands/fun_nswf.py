@@ -7,7 +7,8 @@ from typing import List
 try:
     from bs4 import BeautifulSoup
 except ImportError:
-    import logging; logging.warning('Beatiful soup not installed')
+    import logging
+    logging.warning('Beatiful soup not installed')
 
 from discord import File
 from discord.ext.commands import cooldown, check, group, Cog
@@ -15,13 +16,14 @@ from discord.ext.commands import cooldown, check, group, Cog
 try:
     from requests import get
 except ImportError:
-    import logging; logging.warning('requests not installed')
+    import logging
+    logging.warning('requests not installed')
 
 from noheavenbot.utils.constants import Fields
 
 
 # Not optimal but html was so fucked up had to do something ugly like this.
-def filter_crap(l: List[str])-> List[str]:
+def filter_crap(l: List[str]) -> List[str]:
     craps = ['i', '.', 'i', '/', '#', 'h', 'pass', 'http', 'index',
              'https', 'comments', 'register', '#inline', 'password']
     _set = set(l)
@@ -31,8 +33,8 @@ def filter_crap(l: List[str])-> List[str]:
             if i.startswith(crap):
                 temp_set.remove(i)
                 break
-    temp_list = list(temp_set)
-    return temp_list
+
+    return list(temp_set)
 
 
 def is_nsfw(ctx):
@@ -47,9 +49,9 @@ class Fun(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @check(is_nsfw)
     @group(invoke_without_command=True, aliases=['p'])
     @cooldown(2, 5)
+    @check(is_nsfw)
     async def porn(self, ctx, arg):
             src = 'data-src'
             link = f'http://www.sex.com/pics/{arg.lower()}/'

@@ -130,20 +130,11 @@ class Moderation(Cog):
         await ctx.send(f'Pong -> {self.bot.latency}')
 
     # TODO Make unique test file, not have it on moderation
+
+
     @command()
-    async def test(self, ctx, garch: str,  uno: str, dos: str):
-        pass
-
-    # Todo use json commands intead of this <- NO!?
-    @command(name='mute')
-    async def _mute(self, ctx, member: Member):
-        with open(f'{Path.UTILS}/muted.json', 'r') as f:
-            x = json.load(f)
-
-        x['users'].append(member.id)
-
-        with open(f'{Path.UTILS}/muted.json', 'w') as f:
-            json.dump(x, f, indent=1)
+    async def test(self, ctx):
+        await ctx.send(ctx.channel.is_nsfw())
 
 
 def setup(bot):

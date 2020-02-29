@@ -7,7 +7,7 @@ font_path = Path.ASSETS_FOLDER + '/impact.ttf'
 don_patch_beaten_path = Path.IMGS_FOLDER + '/patch_beaten2.jpg'
 # TODO variable naming is horrendous
 
-'D:\PycharmProjects\noheaven-bot\noheavenbot\assets\don_patch_images\patch_beaten2.jpg'
+
 def welcome_img(user_name: str):
 
     im = Image.open(welcome_img_path)
