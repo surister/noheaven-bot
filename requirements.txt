@@ -1,6 +1,6 @@
 asyncpg==0.18.2
 beautifulsoup4==4.6.3
-Pillow==5.2.0
+Pillow==6.2.0
 requests==2.21.0
 youtube-dl
 python-dotenv
