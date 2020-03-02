@@ -34,12 +34,11 @@ class Todo:
 
         await conn.close()
 
-
     @classmethod
     async def fetch_all(cls):
         conn = await Database.connect()
         query = await conn.fetch('''
         SELECT * FROM nh.todo''')
 
-        return [f'{index}: {value}' for value, index in query]
+        return [f'{index}: {value} : status {done}' for value, index, done in query]
 
