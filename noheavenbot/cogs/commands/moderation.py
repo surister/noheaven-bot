@@ -1,10 +1,7 @@
-import json
+from discord import Embed, Member
+from discord.ext.commands import command, has_role, Cog
 
-from sys import exit
-from discord import Embed, Member, File
-from discord.ext.commands import command, check, has_role, Cog
-
-from noheavenbot.utils.constants import Fields, Path
+from noheavenbot.utils.constants import Fields
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.validator import has_role as check_roles
 
