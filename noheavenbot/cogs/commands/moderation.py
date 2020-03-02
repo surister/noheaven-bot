@@ -131,7 +131,6 @@ class Moderation(Cog):
 
     # TODO Make unique test file, not have it on moderation
 
-
     @command()
     async def test(self, ctx):
         await ctx.send(ctx.channel.is_nsfw())
