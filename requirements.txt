@@ -1,7 +1,7 @@
-asyncpg==0.18.2
-beautifulsoup4==4.6.3
-Pillow==5.2.0
-requests==2.21.0
+asyncpg
+beautifulsoup4
+Pillow
+requests
 youtube-dl
 python-dotenv
 discord.py[voice]
