@@ -42,7 +42,7 @@ class Todo:
 
         return EmbedConstructor(
             "Todo list", [(str(index), f'{value}:{done}') for value, index, done in query]).construct()
-
+        # TODO PONER ESTO MEJOR ESTA BIEN PERO HAY QUE ORGANIZARLO
     @classmethod
     async def set_completed(cls, n: int):
         conn = await Database.connect()
