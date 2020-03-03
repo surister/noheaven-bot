@@ -21,8 +21,8 @@ class Todo(Cog):
     async def todo(self, ctx):
         # if not await todo_table.get_max_index():
         name_list = await todo_table.fetch_all()
-        name_list.insert(0, '\u200b')
-        return await ctx.send('\n'.join(name_list))
+
+        return await ctx.send(embed=name_list)
         # return await ctx.send("No hay nada!")
 
     @todo.command()

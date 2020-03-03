@@ -1,7 +1,5 @@
-from random import randrange
-
 from noheavenbot.utils import Database
-
+from noheavenbot.utils.constructors import EmbedConstructor
 
 class Todo:
     # https://stackoverflow.com/questions/38322870/select-table-and-column-dynamically-based-on-other-table-rows
@@ -37,12 +35,13 @@ class Todo:
     @classmethod
     async def fetch_all(cls, uncompleted=False):
         conn = await Database.connect()
-        if uncompleted:
 
-            query = await conn.fetch('''
-            SELECT * FROM nh.todo ORDER BY nh.todo.finished ASC''')
+        query = await conn.fetch('''
+        SELECT * FROM nh.todo ORDER BY nh.todo.finished ASC''')
+        # TODO hacer que haya 2 posibles llamadas, con terminadas y sin.
 
-        return [f'{index}: {value} : status {done}' for value, index, done in query]
+        return EmbedConstructor(
+            "Todo list", [(str(index), f'{value}:{done}') for value, index, done in query]).construct()
 
     @classmethod
     async def set_completed(cls, n: int):

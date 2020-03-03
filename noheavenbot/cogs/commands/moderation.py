@@ -38,6 +38,7 @@ class Moderation(Cog):
 
         if check_roles('Server Admin', ctx.author.roles):
             help_embed = EmbedConstructor('Server commands', Fields.help_fields).construct()
+            print(Fields.help_fields)
         else:
             help_embed = EmbedConstructor('Server commands', Fields.help_fields[5:]).construct()
         await ctx.send(embed=help_embed)

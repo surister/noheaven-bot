@@ -1,12 +1,12 @@
 from discord import Embed
-from typing import Union, List
+from typing import Union, List, Iterable
 
 
 class EmbedConstructor:
 
     __slots__ = ['title', 'fields', 'n', 'raw_fields']
 
-    def __init__(self, title: str, fields: Union[tuple, list]):
+    def __init__(self, title: str, fields: Iterable):
 
         self.title = title
         self.raw_fields = fields
@@ -22,6 +22,7 @@ class EmbedConstructor:
 
         for different_field in self.fields:
             if len(different_field) == 2:
+                print(different_field)
                 if any(map(lambda x: x.lower() == 'empty', different_field)):
                     if different_field.index('Empty') == 0:
                         custom_embed.add_field(name='\u200b', value=different_field[1], inline=False)
