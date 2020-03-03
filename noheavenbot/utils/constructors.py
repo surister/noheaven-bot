@@ -1,5 +1,5 @@
 from discord import Embed
-from typing import Union
+from typing import Union, List
 
 
 class EmbedConstructor:
@@ -36,3 +36,5 @@ class EmbedConstructor:
 
     def construct(self):
         return self._construction()
+
+    # Todo, es necesario el construct aqui? maybe ponerlo directamente en __new__ y que se haga cuando haga la clase

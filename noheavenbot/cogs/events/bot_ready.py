@@ -1,5 +1,6 @@
 from time import strftime
 from discord.ext.commands import Cog
+import logging
 
 
 class Ready(Cog):
@@ -16,7 +17,8 @@ class Ready(Cog):
             self.bot.user.name,
             self.bot.user.id,
             strftime("%c"))
-        print(s, fmt, s)
+        finalstr = f'{s} {fmt} {s}'
+        logging.log(logging.INFO, finalstr)
 
 
 def setup(bot):
