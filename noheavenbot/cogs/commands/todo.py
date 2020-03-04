@@ -1,4 +1,3 @@
-
 from discord.ext.commands import command, check, has_role, Cog, group
 from noheavenbot.utils.database_tables import Todo as todo_table
 
@@ -48,8 +47,9 @@ class Todo(Cog):
         await ctx.send(f'Borrado el todo número {n}')
 
     @todo.command()
-    async def test(self, ctx):
-        return await ctx.send(await todo_table.get_max_index())
+    async def finish(self, ctx, n: int):
+        await todo_table.set_completed(n)
+        await ctx.send(f"Todo número {n} terminado!")
 
 
 def setup(bot):

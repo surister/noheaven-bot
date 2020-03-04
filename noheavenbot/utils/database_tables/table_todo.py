@@ -1,5 +1,6 @@
-from noheavenbot.utils import Database
+from noheavenbot.utils import Database, pretify_done
 from noheavenbot.utils.constructors import EmbedConstructor
+
 
 class Todo:
     # https://stackoverflow.com/questions/38322870/select-table-and-column-dynamically-based-on-other-table-rows
@@ -41,8 +42,9 @@ class Todo:
         # TODO hacer que haya 2 posibles llamadas, con terminadas y sin.
 
         return EmbedConstructor(
-            "Todo list", [(str(index), f'{value}:{done}') for value, index, done in query]).construct()
+            "**Todo list**", [(f'**{str(index)}**', f'Estado: {pretify_done(done)} - {value}') for value, index, done in query]).construct()
         # TODO PONER ESTO MEJOR ESTA BIEN PERO HAY QUE ORGANIZARLO
+
     @classmethod
     async def set_completed(cls, n: int):
         conn = await Database.connect()
