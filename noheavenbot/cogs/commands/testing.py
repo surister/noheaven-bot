@@ -8,9 +8,7 @@ class Test(Cog):
 
     @command()
     async def test(self, ctx):
-
-        for name in ctx.guild.members:
-            print(f"(Default,'{name.id}','{name.name}',{name.discriminator},{str(name.bot).lower()}),")
+        pass
 
 
 def setup(bot):

@@ -18,7 +18,6 @@ class Text(Cog):
             await ctx.send(c)
         await ctx.channel.delete_messages([ctx.message])
 
-
 # class ApexLegend:
 #     def __init__(self, bot):
 #         self.bot = bot

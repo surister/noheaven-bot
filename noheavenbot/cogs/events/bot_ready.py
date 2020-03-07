@@ -1,6 +1,7 @@
 from time import strftime
 from discord.ext.commands import Cog
 import logging
+from noheavenbot.utils.asyncConf import feed
 
 
 class Ready(Cog):
@@ -11,7 +12,6 @@ class Ready(Cog):
 
     @Cog.listener()
     async def on_ready(self):
-
         s = '\n----------------------------\n'
         fmt = "Conectado como: {0} \n Id: {1} \n {2}".format(
             self.bot.user.name,
@@ -19,6 +19,8 @@ class Ready(Cog):
             strftime("%c"))
         finalstr = f'{s} {fmt} {s}'
         logging.log(logging.INFO, finalstr)
+
+        await feed()
 
 
 def setup(bot):
