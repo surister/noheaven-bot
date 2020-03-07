@@ -2,14 +2,16 @@ import os
 
 from noheavenbot.utils.constants import Path
 
-# Todo añadir logs en estas mierdas xd xd
-# Todo Cambiar os pathing a pathlib
+
+# Won't be changing os pathing to pathlib because No, it works cba.
 
 
 class CogList:
 
     blacklist = ['__pycache__', 'readme.txt', 'server_status.py', '__init__.py', 'path.py', '__pycache__.py',
                  'error_handler.py', 'sample-out.jpg', 'name_enforcer.py', 'playlist.json']
+
+    # TODO limpiar blacklist
 
     @classmethod
     def get(cls) -> list:
@@ -31,10 +33,10 @@ class CogList:
 def load_cogs(instance):
     for extension in CogList():
         try:
-            instance.load_extension(extension)
+            instance.load_extension(extension)  # instance = bot
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
-            print('Failed to load extension {}\n{}'.format(extension, exc))
+            instance.warning('Failed to load extension {}\n{}'.format(extension, exc))
 
 
 def unload_cogs(instance):
@@ -42,4 +44,4 @@ def unload_cogs(instance):
         try:
             instance.unload_extension(extension)
         except Exception as e:
-            print(e)
+            instance.warning(e)

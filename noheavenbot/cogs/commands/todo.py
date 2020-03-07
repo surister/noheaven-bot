@@ -1,8 +1,5 @@
-from discord.ext.commands import command, check, has_role, Cog, group
+from discord.ext.commands import check, Cog, group
 from noheavenbot.utils.database_tables import Todo as todo_table
-
-
-# TOdo logs aqui en todo
 
 
 def is_allowed(ctx):

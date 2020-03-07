@@ -4,6 +4,7 @@ try:
     from asyncpg import create_pool
 except ModuleNotFoundError:
     logging.warning('Database not set up, install asyncpg')
+
 from noheavenbot.utils.constants import EnvVariables
 
 

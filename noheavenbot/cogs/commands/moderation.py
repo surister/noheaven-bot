@@ -5,8 +5,6 @@ from noheavenbot.utils.constants import Fields
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.validator import has_role as check_roles
 
-# TOdo logs aqui en todo
-
 
 def is_allowed(ctx):
     return ctx.author.id in (243742080223019019, 150726664760983552, 249482959357214720)
@@ -38,7 +36,6 @@ class Moderation(Cog):
 
         if check_roles('Server Admin', ctx.author.roles):
             help_embed = EmbedConstructor('Server commands', Fields.help_fields).construct()
-            print(Fields.help_fields)
         else:
             help_embed = EmbedConstructor('Server commands', Fields.help_fields[5:]).construct()
         await ctx.send(embed=help_embed)
@@ -119,15 +116,13 @@ class Moderation(Cog):
     @has_role('Server Admin')
     async def delete_messages(self, ctx, number: int):
 
-        print(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
+        self.bot.warning(f'{ctx.message.author} deleted {number} messages in {ctx.channel}')
         mgs = [message async for message in ctx.channel.history(limit=number+1)]
         await ctx.channel.delete_messages(mgs)
 
     @command()
     async def ping(self, ctx):
         await ctx.send(f'Pong -> {self.bot.latency}')
-
-    # TODO Make unique test file, not have it on moderation
 
 
 def setup(bot):
