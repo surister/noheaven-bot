@@ -1,6 +1,7 @@
 from discord.ext.commands import command, Cog
 from noheavenbot.utils.constants import TEXTCHANNELS
 
+
 class Test(Cog):
 
     def __init__(self, bot):

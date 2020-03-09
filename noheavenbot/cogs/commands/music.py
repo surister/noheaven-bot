@@ -12,8 +12,6 @@ e.g You might like to implement a vote before skipping the song or only allow ad
 Music bots require lots of work, and tuning. Goodluck.
 If you find any bugs feel free to ping me on discord. @Eviee#0666
 """
-import discord
-from discord.ext import commands
 
 import asyncio
 import itertools
@@ -21,8 +19,11 @@ import sys
 import traceback
 from async_timeout import timeout
 from functools import partial
-from youtube_dl import YoutubeDL
 
+import discord
+from discord.ext import commands
+
+from youtube_dl import YoutubeDL
 
 ytdlopts = {
     'format': 'bestaudio/best',
@@ -228,7 +229,7 @@ class Music(commands.Cog):
         return player
 
     @commands.command(name='connect', aliases=['join'])
-    async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
+    async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
         """Connect to voice.
         Parameters
         ------------
@@ -272,7 +273,8 @@ class Music(commands.Cog):
         """
 
         if ctx.channel.id != 452527686506512384:
-            return await ctx.send(f'{ctx.author} cruck a ver si usamos el canal correcto {self.bot.get_channel(452527686506512384).mention}')
+            return await ctx.send(
+                f'{ctx.author} cruck a ver si usamos el canal correcto {self.bot.get_channel(452527686506512384).mention}')
         await ctx.trigger_typing()
 
         vc = ctx.voice_client
