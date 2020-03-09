@@ -373,13 +373,19 @@ class Music(commands.Cog):
         player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
                                    f'requested by `{vc.source.requester}`')
 
-    @commands.command(name='volume', aliases=['vol'])
+    @commands.group(invoke_without_command=True, aliases=['v'])
+    async def volume(self, ctx):
+        await ctx.send(self.get_player(ctx).volume)
+
+    @volume.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
         """Change the player volume.
         Parameters
         ------------
         volume: float or int [Required]
             The volume to set the player to in percentage. This must be between 1 and 100.
+            :param ctx:
+            :param vol:
         """
         vc = ctx.voice_client
 
