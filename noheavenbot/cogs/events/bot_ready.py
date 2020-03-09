@@ -1,6 +1,7 @@
 from time import strftime
 from discord.ext.commands import Cog
 import logging
+from noheavenbot.utils.update_constants_from_db import UpdateFromDataBase
 
 
 class Ready(Cog):
@@ -18,6 +19,8 @@ class Ready(Cog):
             strftime("%c"))
         finalstr = f'{s} {fmt} {s}'
         logging.log(logging.INFO, finalstr)
+
+        await UpdateFromDataBase()
 
 
 def setup(bot):

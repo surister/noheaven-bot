@@ -5,6 +5,14 @@ from typing import NamedTuple
 from pathlib import PurePath
 
 
+class _TextChannels:
+    def get(self, attr_name: str):
+        return self.__getattribute__(attr_name)
+
+
+TEXTCHANNELS = _TextChannels()
+
+
 class Fields(NamedTuple):
 
     help_fields = (
@@ -92,7 +100,6 @@ class Fields(NamedTuple):
 
 
 class Path(NamedTuple):
-    # TODO check pathing in linux
 
     UTILS_FOLDER = str(PurePath(__file__).parent)
     _ROOT_FOLDER = UTILS_FOLDER.replace('utils', '')

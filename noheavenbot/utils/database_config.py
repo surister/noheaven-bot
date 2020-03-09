@@ -20,15 +20,3 @@ class Database:
 
         return await create_pool(**credentials)
 
-# async def yo():
-#     conn = await Database.connect()
-#     val = await conn.execute('''
-#     DELETE FROM nh.garch_names WHERE id=18;
-#     ''')
-#     await conn.close()
-#     print(val)
-#
-#
-# import asyncio
-#
-# asyncio.run(yo())

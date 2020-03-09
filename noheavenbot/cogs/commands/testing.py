@@ -1,5 +1,5 @@
 from discord.ext.commands import command, Cog
-
+from noheavenbot.utils.constants import TEXTCHANNELS
 
 class Test(Cog):
 
@@ -8,7 +8,7 @@ class Test(Cog):
 
     @command()
     async def test(self, ctx):
-        pass
+        await ctx.send(TEXTCHANNELS.__getattribute__('bot-commands'))
 
 
 def setup(bot):
