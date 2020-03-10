@@ -9,8 +9,7 @@ class Test(Cog):
 
     @command()
     async def test(self, ctx):
-        await ctx.send(TEXTCHANNELS.__getattribute__('bot-commands'))
-
+        pass
 
 def setup(bot):
     bot.add_cog(Test(bot))

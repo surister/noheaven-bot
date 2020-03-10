@@ -17,11 +17,14 @@ class OnMessage(Cog):
 
         if message.channel.id != bot_commands_channel:
 
-            if message.author.id == 234395307759108106:  # id of current music bot, can change over time.
+            if message.author.id == 234395307759108106:  # id of current external music bot, can change over time.
                 await message.channel.send(f"Tu {self.last.author.mention} de que coño vas, pon los comandos en "
                                            f"{self.bot.get_channel(bot_commands_channel).mention}")
-                await sleep(3)
+
                 mgs = [message async for message in message.channel.history(limit=3)]
+
+                await sleep(3)
+
                 await message.channel.delete_messages(mgs)
 
         self.last = message
