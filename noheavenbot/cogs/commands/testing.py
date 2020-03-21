@@ -1,5 +1,7 @@
 from discord.ext.commands import command, Cog
 from noheavenbot.utils.constants import TEXTCHANNELS
+from discord import Member
+
 
 class Test(Cog):
 
@@ -8,7 +10,7 @@ class Test(Cog):
 
     @command()
     async def test(self, ctx):
-        await ctx.send(TEXTCHANNELS.__getattribute__('bot-commands'))
+        pass
 
 
 def setup(bot):

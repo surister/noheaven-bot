@@ -12,8 +12,6 @@ e.g You might like to implement a vote before skipping the song or only allow ad
 Music bots require lots of work, and tuning. Goodluck.
 If you find any bugs feel free to ping me on discord. @Eviee#0666
 """
-import discord
-from discord.ext import commands
 
 import asyncio
 import itertools
@@ -21,8 +19,11 @@ import sys
 import traceback
 from async_timeout import timeout
 from functools import partial
-from youtube_dl import YoutubeDL
 
+import discord
+from discord.ext import commands
+
+from youtube_dl import YoutubeDL
 
 if not discord.opus.is_loaded():
     discord.opus.load_opus('/usr/lib/libopus.so.0')
@@ -231,7 +232,7 @@ class Music(commands.Cog):
         return player
 
     @commands.command(name='connect', aliases=['join'])
-    async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
+    async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
         """Connect to voice.
         Parameters
         ------------
@@ -275,7 +276,8 @@ class Music(commands.Cog):
         """
 
         if ctx.channel.id != 452527686506512384:
-            return await ctx.send(f'{ctx.author} cruck a ver si usamos el canal correcto {self.bot.get_channel(452527686506512384).mention}')
+            return await ctx.send(
+                f'{ctx.author} cruck a ver si usamos el canal correcto {self.bot.get_channel(452527686506512384).mention}')
         await ctx.trigger_typing()
 
         vc = ctx.voice_client
@@ -374,13 +376,19 @@ class Music(commands.Cog):
         player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
                                    f'requested by `{vc.source.requester}`')
 
-    @commands.command(name='volume', aliases=['vol'])
+    @commands.group(invoke_without_command=True, aliases=['v'])
+    async def volume(self, ctx):
+        await ctx.send(self.get_player(ctx).volume)
+
+    @volume.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
         """Change the player volume.
         Parameters
         ------------
         volume: float or int [Required]
             The volume to set the player to in percentage. This must be between 1 and 100.
+            :param ctx:
+            :param vol:
         """
         vc = ctx.voice_client
 

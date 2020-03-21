@@ -1,6 +1,6 @@
 from discord import Embed, Member
 from discord.ext.commands import command, has_role, Cog
-
+from discord import VoiceChannel
 from noheavenbot.utils.constants import Fields
 from noheavenbot.utils.constructors import EmbedConstructor
 from noheavenbot.utils.validator import has_role as check_roles
@@ -124,6 +124,19 @@ class Moderation(Cog):
     async def ping(self, ctx):
         await ctx.send(f'Pong -> {self.bot.latency}')
 
+    @has_role('Server Admin')
+    @command()
+    async def move(self, ctx, channel: VoiceChannel):
+        await ctx.author.move_to(channel)
+
+    @command(aliases=['c'])
+    async def castigado(self, ctx, target: Member):
+        role = ctx.guild.get_role(589020435677577217)
+
+        await target.add_roles(role)
+        return await ctx.send(f'Has sido ascendido a {role.name} {target.display_name}!')
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot))
+

@@ -19,4 +19,3 @@ class Database:
                        'port': EnvVariables.get('DB_PORT')}
 
         return await create_pool(**credentials)
-

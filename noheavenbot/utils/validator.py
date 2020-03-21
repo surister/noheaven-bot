@@ -1,18 +1,18 @@
-def has_role(to_check, roles, _id=None):
-    if _id is not None:
+def has_role(roles, role, by_id= False):
+    if by_id:
         for rol in roles:
-            if rol.id == to_check:
+            if rol.id == role:
                 return True
         return False
     else:
         for rol in roles:
-            if rol.name == to_check:
+            if rol.name == role:
                 return True
         return False
 
 
 def has_permissions(id: int, action_id: int):
-    pass
+    raise Exception('Not yet implemented')
 
 
 """
@@ -23,5 +23,4 @@ def has_permissions(id: int, action_id: int):
 5:
 
 """
-
 # TODO crear tabla con todos los usuarios/ids para poder
