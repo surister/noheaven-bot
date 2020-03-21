@@ -9,8 +9,8 @@ class Test(Cog):
         self.bot = bot
 
     @command()
-    async def test(self, ctx, bot: Member):
-        print(str(ctx.message.author.id), ctx.message.author.nick, str(bot.id), bot.display_name)
+    async def test(self, ctx):
+        pass
 
 
 def setup(bot):
