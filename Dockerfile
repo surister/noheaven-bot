@@ -11,6 +11,7 @@ RUN apk add --no-cache --virtual .build-deps \
             libffi-dev \
             git \
 	    ffmpeg \
+	    opus \
             #Pynacl
             build-base \
             # Pillow
@@ -24,11 +25,10 @@ RUN apk add --no-cache --virtual .build-deps \
             tcl-dev \
             harfbuzz-dev \
             fribidi-dev && \
-
             pip install -r requirements.txt && \
-            pip install -U discord.py[voice] && \
-            apk del .build-deps && \
-            rm -rf /var/cache/apk/*
+            pip install -U discord.py[voice] 
+            #apk del .build-deps && \
+            #rm -rf /var/cache/apk/*
 
 
 ENTRYPOINT ["python"]
