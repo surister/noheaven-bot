@@ -37,13 +37,3 @@ class Users:
         ids = [i[0] for i in query]
 
         return ids
-
-    @classmethod
-    async def update(cls, users: dict):
-        if len(users) > await cls.len():
-            for user in users:
-                pass
-
-
-
-
