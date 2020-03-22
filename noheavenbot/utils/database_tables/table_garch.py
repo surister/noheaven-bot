@@ -10,7 +10,7 @@ class Garch:
         conn = await Database.connect()
 
         n = await conn.fetchval('''
-        SELECT MAX(id) FROM nh.garch_names
+        SELECT COUNT(*) FROM nh.garch_names
                         ''')
 
         await conn.close()
