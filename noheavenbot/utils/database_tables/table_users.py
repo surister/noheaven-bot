@@ -16,7 +16,8 @@ class Users:
     async def insert_single(cls, nombre: str, is_boot: bool, discriminator: int, identifier: str):
         conn = await Database.connect()
         await conn.execute('''
-        INSERT INTO nh.users_test (id, nombre_actual, is_bot, name_identifier, identifier) VALUES (DEFAULT, $1, $2, $3, $4)
+        INSERT INTO nh.users_test (id, nombre_actual, is_bot, name_identifier, identifier) 
+        VALUES (DEFAULT, $1, $2, $3, $4)
         
         ''', nombre, is_boot, discriminator, identifier)
 
