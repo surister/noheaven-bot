@@ -16,10 +16,15 @@ class Todo(Cog):
     @check(is_allowed)
     async def todo(self, ctx):
         # if not await todo_table.get_max_index():
-        name_list = await todo_table.fetch_all()
+        name_list = await todo_table.fetch_all(True)
 
         return await ctx.send(embed=name_list)
         # return await ctx.send("No hay nada!")
+
+    @todo.command()
+    async def all(self, ctx):
+        name_list = await todo_table.fetch_all(False)
+        return await ctx.send(embed=name_list)
 
     @todo.command()
     async def add(self, ctx, *, txt):
