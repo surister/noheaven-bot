@@ -19,7 +19,7 @@ class NhCommands(Cog):
         admin = is_admin
 
         if is_admin:
-            if check_role(ctx.message.author.roles, 455390225657757706, True):
+            if check_role(ctx.message.author.roles, 445947005169303552, True):
                 admin = True
             else:
                 return await ctx.send('Solo los administradores pueden añadir bots con permisos de administración.')
