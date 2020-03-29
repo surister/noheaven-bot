@@ -10,37 +10,42 @@ class _TextChannels:
         return self.__getattribute__(attr_name)
 
 
+class _TrustedBotIds:
+    def get(self, attr_name: str):
+        return self.__getattribute__(attr_name)
+
+
 TEXTCHANNELS = _TextChannels()
+TRUSTED_BOTS = _TrustedBotIds()
 
 
 class Fields(NamedTuple):
-
     help_fields = (
 
-                    ('__**Admins**__', 'Commands only avaliable for admins'),
-                    ('!reset', 'resets the bots, only admins can do that'),
-                    ('!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'),
-                    ('!d <number>', 'Deletes <number> messages from the channel'),
-                    ('!reload', 'Reloads cogs'),
-                    ('!garch delete <indice>', 'Borra el nombre de garch de ese indice, los indices empiezan en 0'),
-                    ('__**Users**__', 'Commands avaliable for every user'),
-                    ('!info <user>', 'Shows <users> info'),
-                    ('!ping', 'echo PONG'),
-                    ('__**Nsfw**__', 'nsfw commands avaliable for every user'),
-                    ('!porn <argument>', 'Sends an image of <argument> category'),
-                    ('!porn list', 'Shows possible <argument>'),
-                    ('!gif <argument>', 'Sends a gif of <argument> category'),
-                    ('!gif list', 'Shows possible <argument>'),
-                    ('!lol <argument', 'SEnds an image of <argument> category'),
-                    ('!lol list', 'Shows possible <argument>'),
-                    ('__**Garch**__', 'Garch commands'),
-                    ('!garch', 'Shows a random garch name'),
-                    ('!garch save <name>', 'Saves new garch name'),
-                    ('!garch list', 'Shows the saved list'),
-                    ('!music', 'Shows you the music options'),
-                    ('!text <texto - >', 'Transforms <texto> in emoji text'),
-                    ('!beaten <destructor> <vencido1> <vencido2>', 'Shows your enemies who the boss is')
-                    )
+        ('__**Admins**__', 'Commands only avaliable for admins'),
+        ('!reset', 'resets the bots, only admins can do that'),
+        ('!perms <user>', 'Shows the optional <users> permissions, ctx.author by default'),
+        ('!d <number>', 'Deletes <number> messages from the channel'),
+        ('!reload', 'Reloads cogs'),
+        ('!garch delete <indice>', 'Borra el nombre de garch de ese indice, los indices empiezan en 0'),
+        ('__**Users**__', 'Commands avaliable for every user'),
+        ('!info <user>', 'Shows <users> info'),
+        ('!ping', 'echo PONG'),
+        ('__**Nsfw**__', 'nsfw commands avaliable for every user'),
+        ('!porn <argument>', 'Sends an image of <argument> category'),
+        ('!porn list', 'Shows possible <argument>'),
+        ('!gif <argument>', 'Sends a gif of <argument> category'),
+        ('!gif list', 'Shows possible <argument>'),
+        ('!lol <argument', 'SEnds an image of <argument> category'),
+        ('!lol list', 'Shows possible <argument>'),
+        ('__**Garch**__', 'Garch commands'),
+        ('!garch', 'Shows a random garch name'),
+        ('!garch save <name>', 'Saves new garch name'),
+        ('!garch list', 'Shows the saved list'),
+        ('!music', 'Shows you the music options'),
+        ('!text <texto - >', 'Transforms <texto> in emoji text'),
+        ('!beaten <destructor> <vencido1> <vencido2>', 'Shows your enemies who the boss is')
+    )
 
     music_fields = (
 
@@ -86,7 +91,7 @@ class Fields(NamedTuple):
         'shyvana', 'sivir', 'sona', 'soraka', 'syndra', 'taliyah',
         'tristana', 'vayne', 'vi', 'xayah', 'zoe', 'zyra', 'group',
         'cosplay', 'genderbender', 'male', 'irelia', 'jinx', 'random or r'
-                ]
+    ]
 
     nsfw_conversion = {
         'conversion_index': ['taliyah', 'camille', "kai'sa", "rek'sai", 'zoe', 'xayah'],
@@ -100,7 +105,6 @@ class Fields(NamedTuple):
 
 
 class Path(NamedTuple):
-
     UTILS_FOLDER = str(PurePath(__file__).parent)
     _ROOT_FOLDER = UTILS_FOLDER.replace('utils', '')
 
@@ -113,12 +117,12 @@ class Path(NamedTuple):
 
 
 class EnvVariables(NamedTuple):
-
     try:
         from dotenv import load_dotenv
         load_dotenv()
     except ModuleNotFoundError:
         logging.warning('dotenv not installed')
+
     # try:
     #     debug_mode = True if os.environ['DEBUG_MODE'] == 'True' else False
     # except KeyError:

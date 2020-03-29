@@ -22,7 +22,6 @@ class EmbedConstructor:
 
         for different_field in self.fields:
             if len(different_field) == 2:
-                print(different_field)
                 if any(map(lambda x: x.lower() == 'empty', different_field)):
                     if different_field.index('Empty') == 0:
                         custom_embed.add_field(name='\u200b', value=different_field[1], inline=False)

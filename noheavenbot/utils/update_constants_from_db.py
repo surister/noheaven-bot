@@ -1,6 +1,7 @@
-from noheavenbot.utils.constants import TEXTCHANNELS
+from noheavenbot.utils.constants import TEXTCHANNELS, TRUSTED_BOTS
 
 from noheavenbot.utils.database_tables import TextChannels
+from noheavenbot.utils.database_tables import TrustedBot
 
 
 class UpdateFromDataBase:
@@ -15,11 +16,13 @@ class UpdateFromDataBase:
     async def update(cls):
         # TextChannels
 
-        query = await TextChannels()
-        for i, k in query.items():
+        text_channels_query = await TextChannels().get_channels()
+        for i, k in text_channels_query.items():
             TEXTCHANNELS.__setattr__(i, k)
 
         # Id to - do
+        id_bot_query = await TrustedBot.get_ids()
+        TRUSTED_BOTS.__setattr__('get_ids', id_bot_query)
 
     def __new__(cls, *args, **kwargs):
         return cls.update()

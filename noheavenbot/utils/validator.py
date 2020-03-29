@@ -1,4 +1,4 @@
-def has_role(roles, role, by_id= False):
+def has_role(roles, role, by_id=False):
     if by_id:
         for rol in roles:
             if rol.id == role:

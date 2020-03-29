@@ -34,16 +34,19 @@ class Todo:
         await conn.close()
 
     @classmethod
-    async def fetch_all(cls, uncompleted=False):
+    async def fetch_all(cls, only_unfinished=False):
         conn = await Database.connect()
 
-        query = await conn.fetch('''
-        SELECT * FROM nh.todo ORDER BY nh.todo.finished ASC''')
-        # TODO hacer que haya 2 posibles llamadas, con terminadas y sin.
+        if only_unfinished:
+            query = await conn.fetch('''
+            SELECT * FROM nh.todo WHERE NOT nh.todo.finished ORDER BY nh.todo.finished ASC''')
+        else:
+            query = await conn.fetch('''
+            SELECT * FROM nh.todo ORDER BY nh.todo.finished ASC''')
 
         return EmbedConstructor(
             "**Todo list**", [(f'**{str(index)}**', f'Estado: {pretify_done(done)} - {value}') for value, index, done in query]).construct()
-        # TODO PONER ESTO MEJOR ESTA BIEN PERO HAY QUE ORGANIZARLO
+
 
     @classmethod
     async def set_completed(cls, n: int):

@@ -12,5 +12,3 @@ class TextChannels:
 
         return {nombre: identifier for nombre, identifier in query}
 
-    def __new__(cls, *args, **kwargs):
-        return cls.get_channels()

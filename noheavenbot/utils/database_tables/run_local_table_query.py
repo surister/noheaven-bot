@@ -1,11 +1,11 @@
 """Testing file for database_tables/*.py"""
 
 import asyncio
-from noheavenbot.utils.database_tables.table_users import Users
+from noheavenbot.utils.database_tables.table_trusted_bots import TrustedBot
 
 
 async def main():
-    c = await Users.get_users_identifiers_list()
+    c = await TrustedBot.get_ids()
+    print(c)
 
-#
 # asyncio.run(main())
