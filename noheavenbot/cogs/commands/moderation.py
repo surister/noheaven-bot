@@ -34,7 +34,7 @@ class Moderation(Cog):
         # TODO better than this ''slicing'' system, is to separate both fields into admin_fields and user fields.
         # Revisit and rethink whole idea
 
-        if check_roles('Server Admin', ctx.author.roles):
+        if check_roles(ctx.author.roles, 'Server Admin'):
             help_embed = EmbedConstructor('Server commands', Fields.help_fields).construct()
         else:
             help_embed = EmbedConstructor('Server commands', Fields.help_fields[5:]).construct()
