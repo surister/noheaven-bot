@@ -13,11 +13,17 @@ class OnMessage(Cog):
 
     @Cog.listener()
     async def on_message(self, message):
+        allowed_strings = ['!l', 'Wrong category']
         bot_commands_channel = [int(TEXTCHANNELS.get('comandos-bot')), int(TEXTCHANNELS.get('bot-commands'))]
 
         if message.channel.id not in bot_commands_channel:
-            if message.author.id in TRUSTED_BOTS.get_ids:  # id list of all trusted bots
-                if message.content.startswith('Tu'):  # a bit hacky but works, saves us from having 2 bots
+            if message.author.id in TRUSTED_BOTS.get_ids:
+                if message.channel.id == int(TEXTCHANNELS.get('nsfw')):
+                    if not any(map(lambda x: message.content.startswith(x), allowed_strings)):
+                        return
+                    # TODO Recheck this.
+                if message.content.startswith('Tu'):
+                    # a bit hacky but works, saves us from having 2 bots
                     # or doing some other more complex logic
                     return
 
