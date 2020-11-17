@@ -5,3 +5,4 @@ requests
 youtube-dl
 python-dotenv
 discord.py[voice]
+Soy : HACKER
